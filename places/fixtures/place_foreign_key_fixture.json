@@ -1,0 +1,18 @@
+[
+	{
+		"model": "places.Place",
+		"pk": 1,
+		"fields": {
+			"name": "Uno",
+			"description": "Type",
+			"restrooms": false,
+			"ac": false,
+			"heating": false,
+			"aux_power_generator": false,
+			"games": false,
+			"active": true,
+			"last_modified": "2016-01-29",
+			"latitude_longitude": "POINT (-99.50 19.30)"
+		}
+	}
+]

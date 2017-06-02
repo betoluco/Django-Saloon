@@ -1,0 +1,10 @@
+{% if results %}
+  {% for result in results %}
+    <div class="well botstrap-back">{{result.name}}</div>
+  {% endfor %}
+{% else %}
+	<p>No hay resultados para esta area</p>
+{% endif %}
+{%if results.has_next %}
+	<button type="button" class="btn btn-primary btn-block">Cargar mas lugares<button>
+{% endif %}
