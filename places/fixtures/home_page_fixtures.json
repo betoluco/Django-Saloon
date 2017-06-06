@@ -1,7 +1,24 @@
-[
+[	
 	{
 		"model": "places.Place",
 		"pk": 1,
+		"fields": {
+			"name": "Unactive place",
+			"description": "Type",
+			"restrooms": false,
+			"ac": false,
+			"heating": false,
+			"aux_power_generator": false,
+			"games": false,
+			"active": false,
+			"last_modified": "2016-01-29",
+			"latitude_longitude": "POINT (-99.746389 19.237374)"
+		}
+	},
+
+	{
+		"model": "places.Place",
+		"pk": 2,
 		"fields": {
 			"name": "NorthEast outer",
 			"description": "Type",
@@ -18,7 +35,7 @@
 
 	{
 		"model": "places.Place",
-		"pk":2,
+		"pk":3,
 		"fields": {
 			"name": "SouthWest outer",
 			"description": "Type",
@@ -35,9 +52,9 @@
 
 	{
 		"model": "places.Place",
-		"pk": 3,
+		"pk": 4,
 		"fields": {
-			"name": "",
+			"name": "NorthEast inner",
 			"description": "Type",
 			"restrooms": false,
 			"ac": false,
@@ -52,7 +69,7 @@
 
 	{
 		"model": "places.Place",
-		"pk": 4,
+		"pk": 5,
 		"fields": {
 			"name": "SouthWest inner",
 			"description": "Type",
@@ -69,18 +86,35 @@
 
 	{
 		"model": "places.Place",
-		"pk": 5,
+		"pk": 6,
 		"fields": {
-			"name": "Unactive place",
+			"name": "Five",
 			"description": "Type",
 			"restrooms": false,
 			"ac": false,
 			"heating": false,
 			"aux_power_generator": false,
 			"games": false,
-			"active": false,
+			"active": true,
 			"last_modified": "2016-01-29",
-			"latitude_longitude": "POINT (-99.746389 19.237374)"
+			"latitude_longitude": "POINT (-99.664202 19.283423)"
+		}
+	},
+
+	{
+		"model": "places.Place",
+		"pk": 7,
+		"fields": {
+			"name": "Six",
+			"description": "Type",
+			"restrooms": false,
+			"ac": false,
+			"heating": false,
+			"aux_power_generator": false,
+			"games": false,
+			"active": true,
+			"last_modified": "2016-01-29",
+			"latitude_longitude": "POINT (-99.641371 19.278400)"
 		}
 	}
 ]

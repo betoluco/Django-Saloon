@@ -12,5 +12,10 @@ def home_page(request):
 def results(request):
 	corners = (request.GET['swLng'], request.GET['swLat'], request.GET['neLng'], request.GET['neLat'])
 	geom = Polygon.from_bbox(corners)
-	results =	Place.objects.filter(latitude_longitude__within=geom).filter(active=True)
+	paginator =	Paginator(Place.objects.filter(active=True).filter(latitude_longitude__within=geom), 5)
+	page = request.GET.get('page')
+	try:
+		results = paginator.page(page)
+	except PageNotAnInteger:
+		results = paginator.page(1)
 	return render(request, 'places/results.html', {'results': results})

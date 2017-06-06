@@ -3,8 +3,15 @@
     <div class="well botstrap-back">{{result.name}}</div>
   {% endfor %}
 {% else %}
-	<p>No hay resultados para esta area</p>
+  <p>No hay resultados para esta area</p>
 {% endif %}
 {%if results.has_next %}
-	<button type="button" class="btn btn-primary btn-block">Cargar mas lugares<button>
+  <div id="results-{{results.next_page_number}}"></div>
+  <button onclick="getNextPage()" class="btn btn-primary btn-block">+ resultados</button>
+   <script type="text/javascript">
+	function getNextPage(){
+	  console.log("getNextPage");
+	  $('#results-{{results.next_page_number}}').load("{{ request.get_full_path }}"+";page={{results.next_page_number}}");
+	}
+  </script>
 {% endif %}
