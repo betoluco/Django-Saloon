@@ -6,7 +6,7 @@ from django.forms import ModelForm
 from django.forms.widgets import Select
 from datetime import date
 
-from places.models import Place, Address, Telephone, Email, Representative, SocialMedia, ProfilePicture, Picture
+from places.models import Place, Region, Locality, Address, Telephone, Email, Representative, SocialMedia, ProfilePicture, Picture
 from website.settings.local import MEDIA_URL
 
 
@@ -169,25 +169,57 @@ class PlaceTest(TestCase):
 		place = Place()
 		self.assertTrue(place.active)
 
+
 #Form created for testing model options is rendered as a select widget
-class AddressForm(ModelForm):
+class RegionForm(ModelForm):
 	class Meta:
-		model = Address
+		model = Region
 		fields = '__all__'
+
+class RegionTest(TestCase):
+
+	def test_region_model_can_store_in_the_database_the_correct_data(self):
+		region = Region(region='Estado de Mexico')
+		region.save()
+		self.assertEqual(Region.objects.count(), 1)
+
+	def test_region_field_is_rendered_as_a_select_type(self):
+		region = RegionForm()
+		self.assertIsInstance(region.fields['region'].widget, Select)
+
+
+#Form created for testing model options is rendered as a select widget
+class LocalityForm(ModelForm):
+	class Meta:
+		model = Locality
+		fields = '__all__'
+
+class LocalityTest(TestCase):
+	fixtures = ['region_foreign_key_fixture']
+
+	def test_locality_model_can_store_in_the_database_the_correct_data(self):
+		locality = Locality(
+			locality='Metepec',
+			region=Region.objects.get(pk=1)
+			)
+		locality.save()
+		self.assertEqual(Locality.objects.count(), 1)
+
+	def test_state_field_is_rendered_as_a_select_type(self):
+		locality = LocalityForm()
+		self.assertIsInstance(locality.fields['locality'].widget, Select)
 
 
 class AddressTest(TestCase):
-	fixtures = ['place_foreign_key_fixture']
+	fixtures = ['place_foreign_key_fixture', 'locality_foreign_key_fixture']
 
 	def address_cretator(self):
 		data = {
-			'number': 'Place number',
-			'street': 'Place street',
-			'colonia': 'Place colonia',
-			'municipio': 'Place municipio',
-			'state': 'Place state',
+			'address_line_1': 'Place street, Place number',
+			'address_line_2': 'Place inside number',
+			'address_line_3': 'Place colonia',
 			'postal_code': '52176',
-			'other_address_reference': 'Inside number',
+			'locality': Locality.objects.get(pk=1),
 			'place': Place.objects.get(pk=1)
 		}
 		address = Address(**data)
@@ -201,13 +233,11 @@ class AddressTest(TestCase):
 	def test_some_address_model_fields_can_accept_blank_values(self):
 		place = Place.objects.get(pk=1)
 		address = Address(
-			number='Place number',
-			street='Place street',
-			colonia='Place colonia',
-			municipio='Toluca de Lerdo',
-			state='Estado de México',
-			postal_code='52176',
-			other_address_reference='',
+			address_line_1='Place street, Place number',
+			address_line_2='',
+			address_line_3='',
+			postal_code='',
+			locality=Locality.objects.get(pk=1),
 			place=Place.objects.get(pk=1)
 		)
 		address.save()
@@ -225,25 +255,16 @@ class AddressTest(TestCase):
 		address.save()
 		self.assertEqual('Uno-1',str(address))
 
-	def test_municipio_field_is_rendered_as_a_select_type(self):
-		address = AddressForm()
-		self.assertIsInstance(address.fields['municipio'].widget, Select)
-
-	def test_state_field_is_rendered_as_a_select_type(self):
-		address = AddressForm()
-		self.assertIsInstance(address.fields['state'].widget, Select)
 
 	def test_there_is_only_one_address_per_model(self):
 		address = self.address_cretator()
 		address.save()
 		address_2 = Address(
-			number='Place number',
-			street='Place street',
-			colonia='Place colonia',
-			municipio='Toluca de Lerdo',
-			state='Estado de México',
-			postal_code='52176',
-			other_address_reference='',
+			address_line_1='Place street, Place number',
+			address_line_2='Place inside number',
+			address_line_3='Place colonia',
+			postal_code='',
+			locality=Locality.objects.get(pk=1),
 			place=Place.objects.get(pk=1)
 		)
 		self.assertRaises(ValidationError, address_2.full_clean)
@@ -256,6 +277,7 @@ class AddressTest(TestCase):
 		address = self.address_cretator()
 		address.save()
 		self.assertEqual(address.pk, Place.objects.get(pk=1).pk)
+
 
 
 #Form created for testing model options is rendered as a select widget

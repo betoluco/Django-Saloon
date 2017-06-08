@@ -63,24 +63,33 @@ class Place (models.Model):
 		return self.name+'-'+str(self.pk)
 
 
-class Address(models.Model):
-	MUNICIPIO_CHOICES =(
+class Region(models.Model):
+
+	REGION_CHOICES = (
+		('Estado de Mexico', 'Estado de Mexico'),
+	)
+
+	region = models.CharField(max_length=100, choices=REGION_CHOICES)
+
+
+class Locality(models.Model):
+	
+	LOCALITY_CHOICES =(
 		('Toluca de Lerdo', 'Toluca'),
 		('Metepec', 'Metepec'),
 	)
 
-	STATE_CHOICES = (
-		('Estado de Mexico', 'Estado de Mexico'),
-	)
+	locality = models.CharField(max_length=100, choices=LOCALITY_CHOICES)
+	region = models.ForeignKey(Region)
 
-	number = models.CharField(max_length=25)
-	street = models.CharField(max_length=50)
-	colonia = models.CharField(max_length=50)
-	municipio = models.CharField(max_length=50, choices=MUNICIPIO_CHOICES)
-	state = models.CharField(max_length=50, choices=STATE_CHOICES)
+
+class Address(models.Model):
+
+	address_line_1 = models.CharField(max_length=100)
+	address_line_2 = models.CharField(max_length=100, blank=True)
+	address_line_3 = models.CharField(max_length=100, blank=True)
 	postal_code = models.CharField(max_length=5, blank=True)
-	# This field is for storing inside number or other reference
-	other_address_reference = models.CharField(max_length=50, blank=True)
+	locality = models.ForeignKey(Locality)
 	place = models.OneToOneField(Place, on_delete=models.CASCADE, primary_key=True)
 
 	def __str__(self):

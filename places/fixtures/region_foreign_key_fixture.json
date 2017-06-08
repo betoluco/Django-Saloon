@@ -1,0 +1,9 @@
+[
+	{
+		"model": "places.Region",
+		"pk": 1,
+		"fields": {
+			"region": "Estado de Mexico"
+		}
+	}	
+]

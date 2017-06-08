@@ -1,0 +1,18 @@
+[
+	{
+		"model": "places.Region",
+		"pk": 1,
+		"fields": {
+			"region": "Estado de Mexico"
+		}
+	},
+
+	{
+		"model": "places.Locality",
+		"pk": 1,
+		"fields": {
+			"locality": "Metepec",
+			"region": 1
+		}
+	}
+]
