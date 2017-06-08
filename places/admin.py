@@ -1,7 +1,14 @@
 from django.contrib import admin
 
 from places.forms import PlacesForm
-from places.models import Place, Address, Telephone, Email, Representative, SocialMedia, ProfilePicture, Picture
+from places.models import Place, Region, Locality, Address, Telephone, Email, Representative, SocialMedia, ProfilePicture, Picture
+
+
+class RegionAdmin(admin.ModelAdmin):
+	pass
+
+class LocalityAdmin(admin.ModelAdmin):
+	pass
 
 
 class AddressInline(admin.StackedInline):
@@ -44,4 +51,7 @@ class PlacesAdmin(admin.ModelAdmin):
 	]
 	form = PlacesForm
 
+
 admin.site.register(Place, PlacesAdmin)
+admin.site.register(Region, RegionAdmin)
+admin.site.register(Locality, LocalityAdmin)

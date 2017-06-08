@@ -170,12 +170,6 @@ class PlaceTest(TestCase):
 		self.assertTrue(place.active)
 
 
-#Form created for testing model options is rendered as a select widget
-class RegionForm(ModelForm):
-	class Meta:
-		model = Region
-		fields = '__all__'
-
 class RegionTest(TestCase):
 
 	def test_region_model_can_store_in_the_database_the_correct_data(self):
@@ -183,16 +177,11 @@ class RegionTest(TestCase):
 		region.save()
 		self.assertEqual(Region.objects.count(), 1)
 
-	def test_region_field_is_rendered_as_a_select_type(self):
-		region = RegionForm()
-		self.assertIsInstance(region.fields['region'].widget, Select)
+	def test_str_representation_of_region_instance_is_region_field(self):
+		region = Region(region='Estado de Mexico')
+		region.save()
+		self.assertEqual(str(Region.objects.get(region='Estado de Mexico')),'Estado de Mexico')
 
-
-#Form created for testing model options is rendered as a select widget
-class LocalityForm(ModelForm):
-	class Meta:
-		model = Locality
-		fields = '__all__'
 
 class LocalityTest(TestCase):
 	fixtures = ['region_foreign_key_fixture']
@@ -205,9 +194,13 @@ class LocalityTest(TestCase):
 		locality.save()
 		self.assertEqual(Locality.objects.count(), 1)
 
-	def test_state_field_is_rendered_as_a_select_type(self):
-		locality = LocalityForm()
-		self.assertIsInstance(locality.fields['locality'].widget, Select)
+	def test_str_representation_of_locality_instance_is_locality_field(self):
+		locality = Locality(
+			locality='Metepec',
+			region=Region.objects.get(pk=1)
+			)
+		locality.save()
+		self.assertEqual(str(Locality.objects.get(locality='Metepec')),'Metepec')
 
 
 class AddressTest(TestCase):

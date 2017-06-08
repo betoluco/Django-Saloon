@@ -65,22 +65,19 @@ class Place (models.Model):
 
 class Region(models.Model):
 
-	REGION_CHOICES = (
-		('Estado de Mexico', 'Estado de Mexico'),
-	)
+	region = models.CharField(max_length=100)
 
-	region = models.CharField(max_length=100, choices=REGION_CHOICES)
+	def __str__(self):
+		return str(self.region)
 
 
 class Locality(models.Model):
-	
-	LOCALITY_CHOICES =(
-		('Toluca de Lerdo', 'Toluca'),
-		('Metepec', 'Metepec'),
-	)
 
-	locality = models.CharField(max_length=100, choices=LOCALITY_CHOICES)
+	locality = models.CharField(max_length=100)
 	region = models.ForeignKey(Region)
+
+	def __str__(self):
+		return str(self.locality)
 
 
 class Address(models.Model):
