@@ -246,9 +246,9 @@ class AddressTest(TestCase):
 	def test_address_gets_deleted_when_foreign_key_is_deleted(self):
 		address = self.address_cretator()
 		address.save()
-		self.assertEqual(Address.objects.all().count(), 1)
+		self.assertEqual(Address.objects.count(), 1)
 		Place.objects.get(pk=1).delete()
-		self.assertEqual(Address.objects.all().count(), 0)
+		self.assertEqual(Address.objects.count(), 0)
 
 	def test_str_representation_of_address_model_is_foreign_key_str(self):
 		address = self.address_cretator()
@@ -302,14 +302,14 @@ class TelephoneTest(TestCase):
 	def test_telephone_model_can_store_in_the_database_the_correct_data(self):
 		phone = self.phone_cretator()
 		phone.save()
-		self.assertEqual(Telephone.objects.all().count(), 1)
+		self.assertEqual(Telephone.objects.count(), 1)
 
 	def test_telephone_gets_deleted_when_foreign_key_is_deleted(self):
 		phone = self.phone_cretator()
 		phone.save()
-		self.assertEqual(Telephone.objects.all().count(), 1)
+		self.assertEqual(Telephone.objects.count(), 1)
 		Place.objects.get(pk=1).delete()
-		self.assertEqual(Telephone.objects.all().count(), 0)
+		self.assertEqual(Telephone.objects.count(), 0)
 
 	def test_telephone_get_validated_for_less_than_ten_numbers(self):
 		phone = self.phone_cretator()
@@ -367,9 +367,9 @@ class EmailTest(TestCase):
 
 	def test_email_gets_deleted_when_foreign_key_is_deleted(self):
 		email = self.email_creator()
-		self.assertEqual(Email.objects.all().count(), 1)
+		self.assertEqual(Email.objects.count(), 1)
 		Place.objects.get(pk=1).delete()
-		self.assertEqual(Email.objects.all().count(), 0)
+		self.assertEqual(Email.objects.count(), 0)
 
 
 	def test_str_representation_of_email_instance_is_email(self):
@@ -395,9 +395,9 @@ class RepresentativeTest(TestCase):
 
 	def test_repersentative_gets_deleted_when_foreign_key_is_deleted(self):
 		representative = self.representative_creator()
-		self.assertEqual(Representative.objects.all().count(), 1)
+		self.assertEqual(Representative.objects.count(), 1)
 		Place.objects.get(pk=1).delete()
-		self.assertEqual(Representative.objects.all().count(), 0)
+		self.assertEqual(Representative.objects.count(), 0)
 
 	def test_str_representation_of_representative_instance_is_representaive_plus_place(self):
 		representative = self.representative_creator()
@@ -424,9 +424,9 @@ class SocialMediaTest(TestCase):
 
 	def test_social_media_gets_deleted_when_foreign_key_is_deleted(self):
 		social_media = self.social_media_creator()
-		self.assertEqual(SocialMedia.objects.all().count(), 1)
+		self.assertEqual(SocialMedia.objects.count(), 1)
 		Place.objects.get(pk=1).delete()
-		self.assertEqual(SocialMedia.objects.all().count(), 0)
+		self.assertEqual(SocialMedia.objects.count(), 0)
 
 	def test_str_representation_of_representative_instance_is_representaive_plus_place(self):
 		social_media = self.social_media_creator()
@@ -475,9 +475,9 @@ class ProfilePictureTest(TestCase):
 	@profile_picture_creator
 	def test_profile_picture_gets_deleted_when_foreign_key_is_deleted(self, profile_picture):
 		profile_picture.save()
-		self.assertEqual(ProfilePicture.objects.all().count(), 1)
+		self.assertEqual(ProfilePicture.objects.count(), 1)
 		Place.objects.get(pk=1).delete()
-		self.assertEqual(ProfilePicture.objects.all().count(), 0)
+		self.assertEqual(ProfilePicture.objects.count(), 0)
 
 	@profile_picture_creator
 	def test_place_field_is_primary_key_of_profile_picture_model(self, profile_picture):
@@ -516,6 +516,6 @@ class PictureTest(TestCase):
 	@picture_creator
 	def test_picture_gets_deleted_when_foreign_key_is_deleted(self, picture):
 		picture.save()
-		self.assertEqual(Picture.objects.all().count(), 1)
+		self.assertEqual(Picture.objects.count(), 1)
 		Place.objects.get(pk=1).delete()
-		self.assertEqual(Picture.objects.all().count(), 0)
+		self.assertEqual(Picture.objects.count(), 0)
