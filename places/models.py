@@ -89,43 +89,36 @@ class Address(models.Model):
 	locality = models.ForeignKey(Locality)
 	place = models.OneToOneField(Place, on_delete=models.CASCADE, primary_key=True)
 
-	def __str__(self):
-		return str(self.place)
-
 
 class Telephone(models.Model):
+
 	PHONE_TYPE_CHOICES = (
 		('cell', 'Cellphone'),
 		('local', 'Localphone'),
 	)
+
 	phone_regex = RegexValidator(regex=r'^\d{10}$', message=_(TELEPHON_FORMAT_ERROR))
 	number = models.CharField(max_length=15, validators=[phone_regex])
 	phone_type = models.CharField(max_length=15, choices=PHONE_TYPE_CHOICES)
 	place = models.ForeignKey(Place, on_delete=models.CASCADE)
-	def __str__(self):
-		return str(self.place)+'-'+self.number[-4:]
 
 
 class Email(models.Model):
+
 	email = models.EmailField()
 	place = models.ForeignKey(Place, on_delete=models.CASCADE)
-	def __str__(self):
-		return str(self.email)
 
 
 class Representative(models.Model):
+
 	representative = models.CharField(max_length=50)
 	place = models.ForeignKey(Place, on_delete=models.CASCADE)
-	def __str__(self):
-		return str(self.representative)
 
 
 class SocialMedia(models.Model):
+
 	social_media = models.URLField()
 	place = models.ForeignKey(Place, on_delete=models.CASCADE)
-	def __str__(self):
-		url_parse = urlparse(self.social_media)
-		return str(url_parse.netloc)
 
 
 def create_path_for_picture(instance, filename):
@@ -133,13 +126,14 @@ def create_path_for_picture(instance, filename):
 	#file will be uploaded to MEDIA_ROOT/place<_id>/filename
 	return '{0}/{1}'.format(instance.place, filename)
 
+
 class ProfilePicture(models.Model):
+
 	picture = models.ImageField(upload_to=create_path_for_picture)
 	place = models.OneToOneField(Place, on_delete=models.CASCADE, primary_key=True)
-	def __str__(self):
-		return str(self.place)
 
 
 class Picture(models.Model):
+
 	picture = models.ImageField(upload_to=create_path_for_picture)
 	place = models.ForeignKey(Place, on_delete=models.CASCADE)

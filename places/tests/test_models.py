@@ -243,12 +243,6 @@ class AddressTest(TestCase):
 		Place.objects.get(pk=1).delete()
 		self.assertEqual(Address.objects.count(), 0)
 
-	def test_str_representation_of_address_model_is_foreign_key_str(self):
-		address = self.address_cretator()
-		address.save()
-		self.assertEqual('Uno-1',str(address))
-
-
 	def test_there_is_only_one_address_per_model(self):
 		address = self.address_cretator()
 		address.save()
@@ -266,19 +260,12 @@ class AddressTest(TestCase):
 		except ValidationError as ve:
 			self.assertIn('place', ve.error_dict)
 
-	def test_place_field_is_primary_key_of_address_model(self):
-		address = self.address_cretator()
-		address.save()
-		self.assertEqual(address.pk, Place.objects.get(pk=1).pk)
-
-
 
 #Form created for testing model options is rendered as a select widget
 class TelephoneForm(ModelForm):
 	class Meta:
 		model = Telephone
 		fields = '__all__'
-
 
 class TelephoneTest(TestCase):
 	fixtures = ['place_foreign_key_fixture']
@@ -331,12 +318,6 @@ class TelephoneTest(TestCase):
 		except ValidationError as ve:
 			self.assertIn('number', ve.error_dict)
 
-	def test_str_representation_of_telephone_model_is_foreign_key_str_plus_four_last_digits(self):
-		phone = self.phone_cretator()
-		phone.number='9876543210'
-		phone.save()
-		self.assertEqual('Uno-1-3210',str(phone))
-
 	def test_phone_field_is_rendered_as_a_select_type(self):
 		phone = TelephoneForm()
 		self.assertIsInstance(phone.fields['phone_type'].widget, Select)
@@ -365,11 +346,6 @@ class EmailTest(TestCase):
 		self.assertEqual(Email.objects.count(), 0)
 
 
-	def test_str_representation_of_email_instance_is_email(self):
-		email = self.email_creator()
-		self.assertEqual(str(Email.objects.get(email='beto@test.com')),'beto@test.com')
-
-
 class RepresentativeTest(TestCase):
 	fixtures = ['place_foreign_key_fixture']
 
@@ -391,12 +367,6 @@ class RepresentativeTest(TestCase):
 		self.assertEqual(Representative.objects.count(), 1)
 		Place.objects.get(pk=1).delete()
 		self.assertEqual(Representative.objects.count(), 0)
-
-	def test_str_representation_of_representative_instance_is_representaive_plus_place(self):
-		representative = self.representative_creator()
-		self.assertEqual(str(Representative.objects.get(representative='Carlos Alberto Hurtado')),
-			'Carlos Alberto Hurtado'
-		)
 
 
 class SocialMediaTest(TestCase):
@@ -420,12 +390,6 @@ class SocialMediaTest(TestCase):
 		self.assertEqual(SocialMedia.objects.count(), 1)
 		Place.objects.get(pk=1).delete()
 		self.assertEqual(SocialMedia.objects.count(), 0)
-
-	def test_str_representation_of_representative_instance_is_representaive_plus_place(self):
-		social_media = self.social_media_creator()
-		self.assertEqual(str(SocialMedia.objects.get(social_media='https://www.facebook.com/salon')),
-			'www.facebook.com'
-		)
 
 
 class ProfilePictureTest(TestCase):
@@ -476,11 +440,6 @@ class ProfilePictureTest(TestCase):
 	def test_place_field_is_primary_key_of_profile_picture_model(self, profile_picture):
 		profile_picture.save()
 		self.assertEqual(profile_picture.pk, Place.objects.get(pk=1).pk)
-
-	@profile_picture_creator
-	def test_str_representation_of_profile_picture_model_is_foreign_key_str(self, profile_picture):
-		profile_picture.save()
-		self.assertEqual('Uno-1', str(profile_picture))
 
 
 class PictureTest(TestCase):
