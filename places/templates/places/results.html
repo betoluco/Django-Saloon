@@ -1,18 +1,56 @@
 {% load static %}
+
 {% if results %}
+
   {% for result in results %}
-    <div class="well botstrap-back">
-      <img src="{% get_media_prefix %}{{result.profilepicture.picture}}">
-      {{result.name}}
+    <div id="well" class="well">
+      <div class="container-fluid">
+        <div class="row">
+          <img class="col-sm-3" src="{% get_media_prefix %}{{result.profilepicture.picture}}">
+
+          <div class="col-sm-9">
+            <h2>{{result.name}}</h2>
+            <p>{{result.description}}</p>
+            {% if result.min_capacity %}
+              <p>
+                <img src="{% static "places/images/invites.svg" %}"> Capacidad: &nbsp 
+                de <span class="capacity">{{result.min_capacity}}</span> &nbsp 
+                a <span class="capacity">{{ result.indoors_capacity|add:result.outdoors_capacity }}</span> 
+
+                {% if result.indoors_capacity and result.outdoors_capacity %}
+                   &nbsp &nbsp donde:
+                {% endif %}
+
+                {% if result.indoors_capacity %}
+                  <span class="capacity">{{ result.indoors_capacity}}</span> 
+                  <img src="{% static "places/images/indoors.svg" %}" title="Salon">
+                {% endif %}
+
+                {% if result.indoors_capacity and result.outdoors_capacity %}
+                   &nbsp , &nbsp 
+                {% endif %}
+
+                {% if result.outdoors_capacity %}
+                  <span class="capacity">{{ result.outdoors_capacity}}</span>
+                  <img src="{% static "places/images/outdoors.svg" %}" title="Jardin">
+                {% endif %}
+              </p>
+            {% endif %}
+          </div>
+          
+        </div>
+      </div>
     </div>
   {% endfor %}
+
 {% else %}
   <p>No hay resultados para esta area</p>
 {% endif %}
+
 {%if results.has_next %}
   <div id="results-{{results.next_page_number}}"></div>
   <button onclick="getNextPage()" class="btn btn-primary btn-block">+ resultados</button>
-   <script type="text/javascript">
+  <script type="text/javascript">
 	function getNextPage(){
 	  console.log("getNextPage");
 	  $('#results-{{results.next_page_number}}').load("{{ request.get_full_path }}"+";page={{results.next_page_number}}");

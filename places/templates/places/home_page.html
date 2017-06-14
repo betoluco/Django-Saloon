@@ -3,7 +3,9 @@
 
 {% block stylesheets %}
   {{block.super}}
-  <link rel="stylesheet" type="text/css" href="{% static "places/css/home-page-style.css" %}">
+  <link rel="stylesheet" type="text/css" href="{% static "places/css/google-maps.css" %}">
+  <link rel="stylesheet" type="text/css" href="{% static "places/css/home-page.css" %}">
+  <link rel="stylesheet" type="text/css" href="{% static "places/css/results.css" %}">
 {% endblock %}
 
 {% block javascript %}
@@ -62,19 +64,13 @@
 {% endblock %}
 
 {% block content %}
-  <div class="row">
-    <div class="col-md-4 col-sm-12">
-      <div class="jumbotron botstrap-back">
-        <h2 class="instructions">Encuentra el lugar ideal para tu fiesta</h2>
-        <p class="instructions">Acercate a una area o usa el buscador para ver unicamente los salones del area seleccionada</p>
-      </div>
+  <!--map-->
+  <div id="jumbotron" class="jumbotron">
+    <div class="container">
+    <div class="row">
+      <input id="pac-input" class="controls" type="text" placeholder="Buscador">
+      <div id="map" class="col-md-8"></div>
     </div>
-
-    <div class="col-md-1 col-sm-0"></div>
-
-    <div class="col-md-7 col-sm-12">
-      <input id="pac-input" class="controls" type="text" placeholder="Search Box">
-      <div id="map"></div>
     </div>
   </div>
 

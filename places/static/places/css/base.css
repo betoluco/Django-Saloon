@@ -1,0 +1,12 @@
+#navbar{
+  margin-bottom: 0px;
+  border: 0;
+  border-radius: 0;
+  background-color: #fff;
+}
+
+#name{
+  font-family: 'Allura', cursive;
+  font-size: 2em;
+  color: black;
+}
