@@ -6,38 +6,41 @@
     <div id="well" class="well">
       <div class="container-fluid">
         <div class="row">
-          <img class="col-sm-3" src="{% get_media_prefix %}{{result.profilepicture.picture}}">
+          <div class="col-sm-12" >
+            <div class="col-sm-3">
+              <img class="img-responsive" src="{% get_media_prefix %}{{result.profilepicture.picture}}">
+            </div>
 
-          <div class="col-sm-9">
-            <h2>{{result.name}}</h2>
-            <p>{{result.description}}</p>
-            {% if result.min_capacity %}
-              <p>
-                <img src="{% static "places/images/invites.svg" %}"> Capacidad: &nbsp 
-                de <span class="capacity">{{result.min_capacity}}</span> &nbsp 
-                a <span class="capacity">{{ result.indoors_capacity|add:result.outdoors_capacity }}</span> 
+            <div class="col-sm-9">
+              <h2>{{result.name}}</h2>
+              {% if result.min_capacity %}
+                <p>
+                  <img src="{% static "places/images/invites.svg" %}"> Capacidad: &nbsp 
+                  de <span class="capacity">{{result.min_capacity}}</span> &nbsp 
+                  a <span class="capacity">{{ result.indoors_capacity|add:result.outdoors_capacity }}</span> 
 
-                {% if result.indoors_capacity and result.outdoors_capacity %}
-                   &nbsp &nbsp donde:
-                {% endif %}
+                  {% if result.indoors_capacity and result.outdoors_capacity %}
+                     &nbsp &nbsp donde:
+                  {% endif %}
 
-                {% if result.indoors_capacity %}
-                  <span class="capacity">{{ result.indoors_capacity}}</span> 
-                  <img src="{% static "places/images/indoors.svg" %}" title="Salon">
-                {% endif %}
+                  {% if result.indoors_capacity %}
+                    <span class="capacity">{{ result.indoors_capacity}}</span> 
+                    <img src="{% static "places/images/indoors.svg" %}" title="Salon">
+                  {% endif %}
 
-                {% if result.indoors_capacity and result.outdoors_capacity %}
-                   &nbsp , &nbsp 
-                {% endif %}
+                  {% if result.indoors_capacity and result.outdoors_capacity %}
+                     &nbsp , &nbsp 
+                  {% endif %}
 
-                {% if result.outdoors_capacity %}
-                  <span class="capacity">{{ result.outdoors_capacity}}</span>
-                  <img src="{% static "places/images/outdoors.svg" %}" title="Jardin">
-                {% endif %}
-              </p>
-            {% endif %}
+                  {% if result.outdoors_capacity %}
+                    <span class="capacity">{{ result.outdoors_capacity}}</span>
+                    <img src="{% static "places/images/outdoors.svg" %}" title="Jardin">
+                  {% endif %}
+                </p>
+              {% endif %}
+              <p>{{result.description}}</p>
+            </div>
           </div>
-          
         </div>
       </div>
     </div>
