@@ -10,56 +10,21 @@
 
 {% block javascript %}
   {{block.super}}
+  <script type="text/javascript" src="{% static "places/js/initLocationsMap.js" %}"></script>
+  <script type="text/javascript" src="{% static "places/js/addMarkers.js" %}"></script>
   <script type="text/javascript">
-    function initLocationsMap() {
-      console.log("function initLocationsMap()");
-      mapOptions = {
-        center: {lat: 19.2846923, lng: -99.649144},
-        zoom: 10,
-        mapTypeId: google.maps.MapTypeId.ROADMAP,
-        mapTypeControl: false,
-        streetViewControl: false,
-      };
-      var map = new google.maps.Map(document.getElementById('map'), mapOptions);
-
-      var input = document.getElementById('pac-input');
-      map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-
-      var initBounds = new google.maps.LatLngBounds();
-      
-      {% for place in places %}
-        var marker = new google.maps.Marker({
-          position:{lat: {{place.latitude_longitude.y}}, lng: {{place.latitude_longitude.x}}},
-          map: map,
-          title: "{{place.name}}"
-        });
-        initBounds.extend({lat: {{place.latitude_longitude.y}}, lng: {{place.latitude_longitude.x}}});
-      {% endfor %}
-      map.fitBounds(initBounds);
-
-      autocompleteOptions = {types: ['geocode'], bounds: initBounds}
-      var autocomplete = new google.maps.places.Autocomplete(input, autocompleteOptions);
-
-      autocomplete.addListener('place_changed', function() {
-        console.log("input chaged");
-        var place = autocomplete.getPlace();
-        var bounds = new google.maps.LatLngBounds();
-        bounds.union(place.geometry.viewport);
-        map.fitBounds(bounds);
-      });
-
-      map.addListener('idle', function(){
-        console.log("load results");
-        var bounds = new google.maps.LatLngBounds();
-        var bounds = map.getBounds();
-        var southWest =  new google.maps.LatLng();
-        var southWest = bounds.getSouthWest();
-        var northEast =  new google.maps.LatLng();
-        var northEast = bounds.getNorthEast();
-        $('#results').load('results/?swLat='+southWest.lat()+'&swLng='+southWest.lng()+'&neLat='+northEast.lat()+'&neLng='+northEast.lng());
-      });
+    function getMarkers(map){
+      console.log("addMarkers")
+      var markers = [
+        {% for place in places %}
+          ["{{place.name}}", {{place.latitude_longitude.y}}, {{place.latitude_longitude.x}}],
+        {% endfor %}
+      ];
+      addMarkers(markers, map);
     }
   </script>
+
+  <script type="text/javascript" src="{% static "places/js/mapIdleListener.js" %}"></script>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBbVtEJlP2oDkRfEfFc2SVEE7Wj1kObrNs&libraries=places&callback=initLocationsMap"async defer></script>
 {% endblock %}
 

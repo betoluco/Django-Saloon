@@ -23,6 +23,7 @@ from places import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.home_page, name='home_page'),
-    url(r'^results/', views.results, name='results')
+    url(r'^results/', views.results, name='results'),
+    url(r'^place/', views.place , name='place')
 ] + static(settings.MEDIA_URL, 
 document_root=settings.MEDIA_ROOT)
