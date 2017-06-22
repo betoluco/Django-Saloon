@@ -4,5 +4,7 @@ function addListener(map){
 		var bounds = new google.maps.LatLngBounds();
 		var bounds = map.getBounds();
 		$('#results').load("results/?bounds="+JSON.stringify(bounds.toJSON()));
+		document.cookie = "center="+JSON.stringify(map.getCenter());
+		document.cookie = "zoom="+map.getZoom();
 	});
 }

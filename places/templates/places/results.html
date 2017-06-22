@@ -12,7 +12,7 @@
             </div>
 
             <div class="col-sm-9">
-              <a href="place/?place={{result.id}}"><h2>{{result.name}}</h2></a>
+              <a class="placeLink" href="place/?place={{result.id}}"><h2>{{result.name}}</h2></a>
               {% if result.min_capacity %}
                 <p>
                   <img src="{% static "places/images/invites.svg" %}"> Capacidad: &nbsp 
