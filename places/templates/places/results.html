@@ -13,14 +13,21 @@
 
             <div class="col-sm-9">
               <a class="placeLink" href="place/?place={{result.id}}"><h2>{{result.name}}</h2></a>
-              {% if result.min_capacity %}
-                <p>
-                  <img src="{% static "places/images/invites.svg" %}"> Capacidad: &nbsp 
-                  de <span class="capacity">{{result.min_capacity}}</span> &nbsp 
-                  a <span class="capacity">{{ result.indoors_capacity|add:result.outdoors_capacity }}</span> 
+              <p>
+                <img src="{% static "places/images/invites.svg" %}"> Capacidad: &nbsp 
+                de <span class="capacity">
+                {% if result.min_capacity %}
+                  {{result.min_capacity}}
+                {% else %}
+                  -
+                {% endif %}
+                </span> &nbsp a
 
+                {% if  result.indoors_capacity or result.outdoors_capacity %}
+                  <span class="capacity">{{ result.indoors_capacity|add:result.outdoors_capacity }}</span> 
+                  
                   {% if result.indoors_capacity and result.outdoors_capacity %}
-                     &nbsp &nbsp donde:
+                    &nbsp &nbsp donde:
                   {% endif %}
 
                   {% if result.indoors_capacity %}
@@ -36,8 +43,12 @@
                     <span class="capacity">{{ result.outdoors_capacity}}</span>
                     <img src="{% static "places/images/outdoors.svg" %}" title="Jardin">
                   {% endif %}
-                </p>
-              {% endif %}
+
+                {% else %}
+                  -
+                {% endif %}
+              </p>
+
               <p>{{result.description}}</p>
             </div>
           </div>
