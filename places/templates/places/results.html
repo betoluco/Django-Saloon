@@ -1,51 +1,48 @@
 {% load static %}
 
-{% if results %}
+{% for result in results %}
+  <div id="well" class="well">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3">
+          <img class="img-responsive" src="{% get_media_prefix %}{{result.profilepicture.picture}}">
+        </div>
 
-  {% for result in results %}
-    <div id="well" class="well">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-sm-3">
-            <img class="img-responsive" src="{% get_media_prefix %}{{result.profilepicture.picture}}">
+        <div class="col-sm-9">
+          <a class="placeLink" href="place/?place={{result.id}}"><h2>{{result.name}}</h2></a>
+
+          <h4>Capacidad:</h4>
+          <div class="row">
+            {% if result.min_capacity %}
+              <div class="col-sm-4">
+                <img src="{% static "places/images/min.svg" %}" title="Minima"> Minima: &nbsp
+                <span class="capacity">{{result.min_capacity}}</span>
+              </div>
+            {% endif %}
+            
+            {% if result.indoors_capacity %}
+              <div class="col-sm-4">
+                <img src="{% static "places/images/indoors.svg" %}" title="Salon"> Maxima Interiores: &nbsp
+                <span class="capacity">{{result.indoors_capacity}}</span>
+              </div>
+            {% endif %}  
+
+            {% if result.outdoors_capacity %}
+              <div class="col-sm-4">
+                <img src="{% static "places/images/outdoors.svg" %}" title="Jardin">Maxima Exterores: &nbsp
+                <span class="capacity">{{result.outdoors_capacity}}</span>
+              </div>
+            {% endif %}
           </div>
-
-          <div class="col-sm-9">
-            <a class="placeLink" href="place/?place={{result.id}}"><h2>{{result.name}}</h2></a>
-
-            <h4>Capacidad:</h4>
-            <div class="row">
-              {% if result.min_capacity %}
-                <div class="col-sm-4">
-                  <img src="{% static "places/images/min.svg" %}" title="Minima"> Minima: &nbsp
-                  <span class="capacity">{{result.min_capacity}}</span>
-                </div>
-              {% endif %}
-              
-              {% if result.indoors_capacity %}
-                <div class="col-sm-4">
-                  <img src="{% static "places/images/indoors.svg" %}" title="Salon"> Maxima Interiores: &nbsp
-                  <span class="capacity">{{result.indoors_capacity}}</span>
-                </div>
-              {% endif %}  
-
-              {% if result.outdoors_capacity %}
-                <div class="col-sm-4">
-                  <img src="{% static "places/images/outdoors.svg" %}" title="Jardin">Maxima Exterores: &nbsp
-                  <span class="capacity">{{result.outdoors_capacity}}</span>
-                </div>
-              {% endif %}
-            </div>
-            <p>{{result.description}}</p>
-          </div>
+          <p>{{result.description}}</p>
         </div>
       </div>
     </div>
-  {% endfor %}
+  </div>
 
-{% else %}
+{% empty %}
   <p>No hay resultados para esta area</p>
-{% endif %}
+{% endfor %}
 
 {%if results.has_next %}
   <div id="results-{{results.next_page_number}}"></div>
