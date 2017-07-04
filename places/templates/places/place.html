@@ -1,3 +1,210 @@
-<h2>This is just to test the link - url - view - template works</h2>
-<p>If it works it must display the name of the place</p>
-<h1>{{place.name}}</h1>
+{% extends "places/_base.html" %}
+{% load static %}
+
+{% block stylesheets %}
+	{{block.super}}
+	<link rel="stylesheet" type="text/css" href="{% static "places/css/place.css" %}">
+{% endblock %}
+
+{% block content %}
+	<div id="myCarousel" class="carousel slide" data-ride="carousel">
+
+		{% with pictures=place.picture_set.all %}
+			<!-- Indicators -->
+			<ol class="carousel-indicators">
+				{% for pic in pictures %}
+					{% if forloop.first %}
+						<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+					{% else %}
+						<li data-target="#myCarousel" data-slide-to="{{forloop.counter0}}"></li>
+					{% endif %}
+				{% endfor %}
+			</ol>
+
+			<!-- Wrapper for slides -->
+			<div class="carousel-inner">
+				{% for pic in pictures %}
+					{% if forloop.first %}
+						<div class="item active">
+							<img src="{% get_media_prefix %}{{pic.picture}}">
+						</div>
+					{% else %}
+						<div class="item">
+							<img src="{% get_media_prefix %}{{pic.picture}}">
+						</div>
+					{% endif %}
+				{% endfor %}
+			</div>
+	  	{% endwith %}
+
+		<!-- Left and right controls -->
+		<a class="left carousel-control" href="#myCarousel" data-slide="prev">
+			<span class="glyphicon glyphicon-chevron-left"></span>
+			<span class="sr-only">Previous</span>
+			</a>
+		<a class="right carousel-control" href="#myCarousel" data-slide="next">
+			<span class="glyphicon glyphicon-chevron-right"></span>
+			<span class="sr-only">Next</span>
+		</a>
+	</div>
+	<!--********************* End carousel *******************-->
+
+	<!--********************* Capacity ********************-->
+	<h1>{{place.name}}</h1>
+	<p>{{place.description}}</p>
+
+	<h4>Capacidad:</h4>
+	<div class="row">
+		{% if place.min_capacity %}
+			<div class="col-sm-4">
+				<img src="{% static "places/images/min.svg" %}" title="Minima"> Minima: &nbsp
+				<span class="capacity">{{place.min_capacity}}</span>
+			</div>
+		{% endif %}
+
+		{% if place.indoors_capacity %}
+			<div class="col-sm-4">
+				<img src="{% static "places/images/indoors.svg" %}" title="Salon"> Maxima Interiores: &nbsp
+				<span class="capacity">{{place.indoors_capacity}}</span>
+			</div>
+		{% endif %}  
+
+		{% if place.outdoors_capacity %}
+			<div class="col-sm-4">
+				<img src="{% static "places/images/outdoors.svg" %}" title="Jardin">Maxima Exterores: &nbsp
+				<span class="capacity">{{place.outdoors_capacity}}</span>
+			</div>
+		{% endif %}
+	</div>
+
+	<!--******************** Sercices ********************-->
+	<h4>Servicions:</h4>
+	<div class="row">
+		<div class="col-sm-4">
+			<img src="{% static "places/images/vehicles.svg" %}">Estacionamiento
+		</div>
+
+		<div class="col-sm-2">
+			{% if place.parking_capacity %}
+				{{place.parking_capacity}} autos
+			{% else %}
+				<p>No tiene</p>
+			{% endif %}
+
+		</div>
+		
+		<div class="col-sm-4">
+			<img src="{% static "places/images/stove.svg" %}"> Cocina
+		</div>
+
+		<div class="col-sm-2">
+			{% if place.parking_capacity %}
+				{{place.kitchen_sqrt_m}} m<sup>2</sup>
+			{% else %}
+				<p>No tiene</p>
+			{% endif %}	
+		</div>
+	</div>
+
+	<div class="row">
+		{% if place.restrooms %}
+			<div class="col-sm-2">
+				<img src="{% static "places/images/toilets.svg" %}" title="Banios">
+			</div>
+		{% endif %}
+
+		{% if place.ac %}
+			<div class="col-sm-2">
+				<img src="{% static "places/images/ac.svg" %}" title="Aire acondicionado">
+			</div>
+		{% endif %}
+
+		{% if place.heating %}
+			<div class="col-sm-2">
+				<img src="{% static "places/images/heating.svg" %}" title="Calefaccion">
+			</div>
+		{% endif %}
+
+		{% if place.aux_power_generator %}
+			<div class="col-sm-2">
+				<img src="{% static "places/images/aux_power.svg" %}" title="Generador auxiliar">
+			</div>
+		{% endif %}
+
+		{% if place.games %}
+			<div class="col-sm-2">
+				<img src="{% static "places/images/games.svg" %}" title="juegos">
+			</div>
+		{% endif %}
+	</div>
+
+	<!--******************** Social Networks ********************-->
+	<h4>Redes sociales:</h4>
+	{% for media in place.socialmedia_set.all %}
+		<div class="row">
+			<div class="col-xs=2">
+				{% if 'facebook' in media.social_media %}
+					<a href="{{media.social_media}}"><img src="{% static "places/images/facebook.svg" %}" alt="facebook"></a>
+				{% endif %}
+			</div>
+		</div>
+	{% endfor %}
+
+	<!--******************** Contact Info ********************-->
+	<h4>Contacto:</h4>
+	{% for rep in place.representative_set.all %}
+		<div class="row">
+			<div class="col-xs=12">
+			<p>r{{rep.representative}}</p>
+			</div>
+		</div>
+	{% endfor %}
+
+	{% for telephone in place.telephone_set.all %}
+		<div class="row">
+			<div class="col-xs=12">
+				<img src="{% static "places/images/"|add:telephone.phone_type|add:".svg" %}" >{{telephone.number}}
+			</div>
+		</div>
+	{% endfor %}
+
+	{% for em in place.email_set.all %}
+		<div class="row">
+			<div class="col-xs=12">
+				<img src="{% static "places/images/email.svg" %}" >{{em.email}}
+			</div>
+		</div>
+	{% endfor %}
+
+	<!--******************** Address ********************-->
+	<h4>Direccion:</h4>
+	<div class="row">
+		<div class="col-xs=12">
+			{{place.address.address_line_1}}, {{place.address.address_line_2}}, {{place.address.address_line_3}}, {{place.address.locality}}, {{place.address.locality.region}}
+		</div>
+	</div>
+
+	<script type="text/javascript">
+	function initMap(){
+		console.log("initMap")
+		var location = new google.maps.LatLng({{place.latitude_longitude.y}}, {{place.latitude_longitude.x}});
+
+		mapOptions = {
+			center: location,
+			zoom: 16,
+			mapTypeId: google.maps.MapTypeId.ROADMAP,
+			mapTypeControl: false,
+			streetViewControl: false,
+		};
+
+		var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+		
+		var marker = new google.maps.Marker({
+			position: location,
+			map: map
+		});	
+	}
+	</script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBbVtEJlP2oDkRfEfFc2SVEE7Wj1kObrNs&libraries=places&callback=initMap"async defer></script>
+	<div id="map"></div>
+{% endblock %}
