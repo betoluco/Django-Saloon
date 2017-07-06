@@ -35,7 +35,7 @@
 					{% endif %}
 				{% endfor %}
 			</div>
-	  	{% endwith %}
+		{% endwith %}
 
 		<!-- Left and right controls -->
 		<a class="left carousel-control" href="#myCarousel" data-slide="prev">
@@ -49,162 +49,218 @@
 	</div>
 	<!--********************* End carousel *******************-->
 
-	<!--********************* Capacity ********************-->
-	<h1>{{place.name}}</h1>
-	<p>{{place.description}}</p>
+	<!--***************** Name & description *****************-->
+	<div class="panel panel-default">
+		<div class="panel-body">
+			<h1>{{place.name}}</h1>
+			<p>{{place.description}}</p>
+		</div>
+	</div>
 
-	<h4>Capacidad:</h4>
-	<div class="row">
-		{% if place.min_capacity %}
-			<div class="col-sm-4">
-				<img src="{% static "places/images/min.svg" %}" title="Minima"> Minima: &nbsp
-				<span class="capacity">{{place.min_capacity}}</span>
-			</div>
-		{% endif %}
+	<!--********************** Capacity **********************-->
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title">Capacidad:</h3>
+		</div>
 
-		{% if place.indoors_capacity %}
-			<div class="col-sm-4">
-				<img src="{% static "places/images/indoors.svg" %}" title="Salon"> Maxima Interiores: &nbsp
-				<span class="capacity">{{place.indoors_capacity}}</span>
-			</div>
-		{% endif %}  
+		<div class="panel-body">
+			<div class="row">
 
-		{% if place.outdoors_capacity %}
-			<div class="col-sm-4">
-				<img src="{% static "places/images/outdoors.svg" %}" title="Jardin">Maxima Exterores: &nbsp
-				<span class="capacity">{{place.outdoors_capacity}}</span>
+				{% if place.min_capacity %}
+					<div class="col-sm-4">
+						<img src="{% static "places/images/min.svg" %}" title="Minima"> Minima: &nbsp
+						<span class="capacity">{{place.min_capacity}}</span>
+					</div>
+				{% endif %}
+
+				{% if place.indoors_capacity %}
+					<div class="col-sm-4">
+						<img src="{% static "places/images/indoors.svg" %}" title="Salon"> Maxima Interiores: &nbsp
+						<span class="capacity">{{place.indoors_capacity}}</span>
+					</div>
+				{% endif %}  
+
+				{% if place.outdoors_capacity %}
+					<div class="col-sm-4">
+						<img src="{% static "places/images/outdoors.svg" %}" title="Jardin">Maxima Exterores: &nbsp
+						<span class="capacity">{{place.outdoors_capacity}}</span>
+					</div>
+				{% endif %}
+				
 			</div>
-		{% endif %}
+		</div>
 	</div>
 
 	<!--******************** Sercices ********************-->
-	<h4>Servicions:</h4>
-	<div class="row">
-		<div class="col-sm-4">
-			<img src="{% static "places/images/vehicles.svg" %}">Estacionamiento
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title">Servicios:</h3>
 		</div>
 
-		<div class="col-sm-2">
-			{% if place.parking_capacity %}
-				{{place.parking_capacity}} autos
-			{% else %}
-				<p>No tiene</p>
-			{% endif %}
-
-		</div>
-		
-		<div class="col-sm-4">
-			<img src="{% static "places/images/stove.svg" %}"> Cocina
-		</div>
-
-		<div class="col-sm-2">
-			{% if place.parking_capacity %}
-				{{place.kitchen_sqrt_m}} m<sup>2</sup>
-			{% else %}
-				<p>No tiene</p>
-			{% endif %}	
-		</div>
-	</div>
-
-	<div class="row">
-		{% if place.restrooms %}
-			<div class="col-sm-2">
-				<img src="{% static "places/images/toilets.svg" %}" title="Banios">
+		<div class="panel-body">
+			<div class="row">
+					<div class="col-sm-4">
+						<p>
+							<img src="{% static "places/images/vehicles.svg" %}"> Estacionamiento: &nbsp
+							{% if place.parking_capacity %}
+								<span class="capacity">{{place.parking_capacity}}</span> autos
+							{% else %}
+								<span class="capacity">No tiene</span>
+							{% endif %}
+						</p>
+					</div>
+					
+					<div class="col-sm-4">
+						<p>
+							<img src="{% static "places/images/stove.svg" %}"> Cocina: &nbsp
+							{% if place.parking_capacity %}
+								<span class="capacity">{{place.kitchen_sqrt_m}}</span> m<sup>2</sup>
+							{% else %}
+								<span class="capacity">No tiene</span>
+							{% endif %}
+						</p>
+					</div>
 			</div>
-		{% endif %}
 
-		{% if place.ac %}
-			<div class="col-sm-2">
-				<img src="{% static "places/images/ac.svg" %}" title="Aire acondicionado">
-			</div>
-		{% endif %}
+			<div class="row">
+				{% if place.restrooms %}
+					<div class="col-sm-2">
+						<img src="{% static "places/images/toilets.svg" %}" title="Baños">
+					</div>
+				{% endif %}
 
-		{% if place.heating %}
-			<div class="col-sm-2">
-				<img src="{% static "places/images/heating.svg" %}" title="Calefaccion">
-			</div>
-		{% endif %}
+				{% if place.ac %}
+					<div class="col-sm-2">
+						<img src="{% static "places/images/ac.svg" %}" title="Aire acondicionado">
+					</div>
+				{% endif %}
 
-		{% if place.aux_power_generator %}
-			<div class="col-sm-2">
-				<img src="{% static "places/images/aux_power.svg" %}" title="Generador auxiliar">
-			</div>
-		{% endif %}
+				{% if place.heating %}
+					<div class="col-sm-2">
+						<img src="{% static "places/images/heating.svg" %}" title="Calefaccion">
+					</div>
+				{% endif %}
 
-		{% if place.games %}
-			<div class="col-sm-2">
-				<img src="{% static "places/images/games.svg" %}" title="juegos">
-			</div>
-		{% endif %}
-	</div>
+				{% if place.aux_power_generator %}
+					<div class="col-sm-2">
+						<img src="{% static "places/images/aux_power.svg" %}" title="Generador auxiliar">
+					</div>
+				{% endif %}
 
-	<!--******************** Social Networks ********************-->
-	<h4>Redes sociales:</h4>
-	{% for media in place.socialmedia_set.all %}
-		<div class="row">
-			<div class="col-xs=2">
-				{% if 'facebook' in media.social_media %}
-					<a href="{{media.social_media}}"><img src="{% static "places/images/facebook.svg" %}" alt="facebook"></a>
+				{% if place.games %}
+					<div class="col-sm-2">
+						<img src="{% static "places/images/games.svg" %}" title="juegos">
+					</div>
 				{% endif %}
 			</div>
 		</div>
-	{% endfor %}
+	</div>
 
-	<!--******************** Contact Info ********************-->
-	<h4>Contacto:</h4>
-	{% for rep in place.representative_set.all %}
-		<div class="row">
-			<div class="col-xs=12">
-			<p>r{{rep.representative}}</p>
-			</div>
+	<!--******************** Social Networks ********************-->
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title">Redes sociales:</h3>
 		</div>
-	{% endfor %}
 
-	{% for telephone in place.telephone_set.all %}
-		<div class="row">
-			<div class="col-xs=12">
-				<img src="{% static "places/images/"|add:telephone.phone_type|add:".svg" %}" >{{telephone.number}}
+		<div class="panel-body">
+			<div class="row">
+				{% for media in place.socialmedia_set.all %}
+					<div class="col-xs-2">
+						{% if 'facebook' in media.social_media %}
+							<a href="{{media.social_media}}"><img src="{% static "places/images/facebook.svg" %}" alt="facebook"></a>
+						{% endif %}
+					</div>
+				{% endfor %}
 			</div>
-		</div>
-	{% endfor %}
-
-	{% for em in place.email_set.all %}
-		<div class="row">
-			<div class="col-xs=12">
-				<img src="{% static "places/images/email.svg" %}" >{{em.email}}
-			</div>
-		</div>
-	{% endfor %}
-
-	<!--******************** Address ********************-->
-	<h4>Direccion:</h4>
-	<div class="row">
-		<div class="col-xs=12">
-			{{place.address.address_line_1}}, {{place.address.address_line_2}}, {{place.address.address_line_3}}, {{place.address.locality}}, {{place.address.locality.region}}
 		</div>
 	</div>
 
+	<!--******************** Contact Info ********************-->
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title">Contacto:</h3>
+		</div>
+
+		<div class="panel-body">
+			<div class="row">
+				{% for rep in place.representative_set.all %}
+							<div class="col-sm-4">
+								<p>{{rep.representative}},</p>
+							</div>
+				{% endfor %}
+			</div>
+			
+			<div class="row">
+				{% for telephone in place.telephone_set.all %}
+					<div class="col-xs-3">
+						<p>
+							<img src="{% static "places/images/"|add:telephone.phone_type|add:".svg" %}" >{{telephone.number}}
+						</p>
+					</div>
+				{% endfor %}
+			</div>
+
+			<div class="row">
+				{% for em in place.email_set.all %}
+						<div class="col-xs-4">
+							<img src="{% static "places/images/email.svg" %}" >{{em.email}}
+						</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+
+	<!--******************** Address ********************-->
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">Direccion:</h3>
+			</div>
+
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-xs-12">
+						<p><span class="capacity">
+						{% if place.address.address_line_1%}
+							{{place.address.address_line_1}},
+						{% endif %}
+						{% if place.address.address_line_2%}
+							 {{place.address.address_line_2}},
+						{% endif %}
+						{% if place.address.address_line_3%}
+							 {{place.address.address_line_3}},
+						{% endif %}
+						{{place.address.locality}}, 
+						{{place.address.locality.region}}</span></p>
+					</div>
+				</div>
+
+				<div class="row">
+					<div id="map" class="col-md-8 col-md-offset-2"></div>
+				</div>
+			</div>
+		</div>
+
 	<script type="text/javascript">
-	function initMap(){
-		console.log("initMap")
-		var location = new google.maps.LatLng({{place.latitude_longitude.y}}, {{place.latitude_longitude.x}});
+		function initMap(){
+			console.log("initMap")
+			var location = new google.maps.LatLng({{place.latitude_longitude.y}}, {{place.latitude_longitude.x}});
 
-		mapOptions = {
-			center: location,
-			zoom: 16,
-			mapTypeId: google.maps.MapTypeId.ROADMAP,
-			mapTypeControl: false,
-			streetViewControl: false,
-		};
+			mapOptions = {
+				center: location,
+				zoom: 16,
+				mapTypeId: google.maps.MapTypeId.ROADMAP,
+				mapTypeControl: false,
+				streetViewControl: false,
+			};
 
-		var map = new google.maps.Map(document.getElementById('map'), mapOptions);
-		
-		var marker = new google.maps.Marker({
-			position: location,
-			map: map
-		});	
-	}
+			var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+			
+			var marker = new google.maps.Marker({
+				position: location,
+				map: map
+			});	
+		}
 	</script>
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBbVtEJlP2oDkRfEfFc2SVEE7Wj1kObrNs&libraries=places&callback=initMap"async defer></script>
-	<div id="map"></div>
+	
 {% endblock %}

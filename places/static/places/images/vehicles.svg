@@ -8,11 +8,11 @@
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    enable-background="new 0 0 24 24"
-   height="29"
+   height="34"
    id="Layer_1"
    version="1.1"
-   viewBox="0 0 44.000001 29"
-   width="44"
+   viewBox="0 0 52.000001 34"
+   width="52"
    xml:space="preserve"
    sodipodi:docname="vehicles.svg"
    inkscape:version="0.92.1 r15371"><metadata
@@ -43,7 +43,7 @@
        type="xygrid"
        id="grid18" /></sodipodi:namedview><g
      id="g16"
-     transform="matrix(1.6666667,0,0,1.6666667,2,-12.999999)"><circle
+     transform="matrix(2,0,0,2,2,-15.999998)"><circle
        cx="18"
        cy="21"
        r="1"

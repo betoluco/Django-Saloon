@@ -9,11 +9,11 @@
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    data-name="Layer 1"
    id="Layer_1"
-   viewBox="0 0 24 30"
+   viewBox="0 0 27.077 34"
    version="1.1"
    sodipodi:docname="stove.svg"
-   width="24"
-   height="30"
+   width="27.077"
+   height="34"
    inkscape:version="0.92.1 r15371">
   <metadata
      id="metadata61">
@@ -51,7 +51,7 @@
      inkscape:current-layer="Layer_1" />
   <g
      id="g81"
-     transform="translate(-4,-1)">
+     transform="matrix(1.1538462,0,0,1.1538462,-4.9230769,-1.4615385)">
     <path
        id="path40"
        d="M 23.91,4 A 1.5,1.5 0 0 0 22.5,3 h -4 A 1.5,1.5 0 0 0 17.09,4 H 12.91 A 1.5,1.5 0 0 0 11.5,3 h -2 A 1.5,1.5 0 0 0 8.09,4 H 6 V 29 H 26 V 4 Z M 25,5 V 9 H 7 V 5 Z M 7,28 V 10 h 18 v 18 z"

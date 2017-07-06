@@ -10,13 +10,13 @@
    version="1.1"
    x="0px"
    y="0px"
-   viewBox="0 0 38.285709 34"
+   viewBox="0 0 55.429 49"
    enable-background="new 0 0 100 87.5"
    xml:space="preserve"
    id="svg1491"
    sodipodi:docname="games.svg"
-   width="38.285709"
-   height="34"
+   width="55.429001"
+   height="49"
    inkscape:version="0.92.1 r15371"><metadata
      id="metadata1497"><rdf:RDF><cc:Work
          rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
@@ -42,7 +42,7 @@
      inkscape:window-maximized="1"
      inkscape:current-layer="svg1491" /><g
      id="g1503"
-     transform="matrix(0.34285714,0,0,0.34285714,2,2.0000002)"><path
+     transform="matrix(0.51428571,0,0,0.51428571,2,2)"><path
        id="path1483"
        d="m 0,39.156 c 0,0.091 0.01,0.178 0.013,0.268 V 38.888 C 0.01,38.977 0,39.065 0,39.156 Z"
        inkscape:connector-curvature="0" /><circle

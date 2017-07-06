@@ -9,10 +9,10 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="31.872709"
-   height="32"
+   width="29.863619"
+   height="30"
    version="1.1"
-   viewBox="0 0 8.4329879 8.4666665"
+   viewBox="0 0 7.9014165 7.9375"
    id="svg78"
    sodipodi:docname="cell.svg"
    inkscape:version="0.92.1 r15371">
@@ -30,8 +30,8 @@
      id="namedview80"
      showgrid="false"
      inkscape:zoom="4.43"
-     inkscape:cx="93.209256"
-     inkscape:cy="21.550446"
+     inkscape:cx="91.209256"
+     inkscape:cy="19.550447"
      inkscape:window-x="-4"
      inkscape:window-y="-4"
      inkscape:window-maximized="1"
@@ -157,7 +157,7 @@
   </metadata>
   <g
      id="g89"
-     transform="matrix(0.64906804,0,0,0.64906804,-0.63702529,-0.48605986)">
+     transform="matrix(0.69543007,0,0,0.69543007,-1.2494914,-1.0877428)">
     <g
        id="g76"
        transform="translate(81.25,-198.87)">

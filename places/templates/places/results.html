@@ -1,56 +1,58 @@
 {% load static %}
 
 {% for result in results %}
-  <div id="well" class="well">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-sm-3">
-          <img class="img-responsive" src="{% get_media_prefix %}{{result.profilepicture.picture}}">
-        </div>
+	<div class="well">
+		<div class="row">
+			<!--*************** Image *************-->
+			<div class="col-sm-3">
+				<img class="img-thumbnail img-responsive" src="{% get_media_prefix %}{{result.profilepicture.picture}}">
+			</div>
 
-        <div class="col-sm-9">
-          <a class="placeLink" href="place/?place={{result.id}}"><h2>{{result.name}}</h2></a>
+			<!--**************** Text *************-->
+			<div class="col-sm-9">
+				<a class="placeLink" href="place/?place={{result.id}}"><h2>{{result.name}}</h2></a>
+				<p>{{result.description}}</p>
 
-          <h4>Capacidad:</h4>
-          <div class="row">
-            {% if result.min_capacity %}
-              <div class="col-sm-4">
-                <img src="{% static "places/images/min.svg" %}" title="Minima"> Minima: &nbsp
-                <span class="capacity">{{result.min_capacity}}</span>
-              </div>
-            {% endif %}
-            
-            {% if result.indoors_capacity %}
-              <div class="col-sm-4">
-                <img src="{% static "places/images/indoors.svg" %}" title="Salon"> Maxima Interiores: &nbsp
-                <span class="capacity">{{result.indoors_capacity}}</span>
-              </div>
-            {% endif %}  
+				<h4>Capacidad:</h4>
+				<p>
+					<div class="row">
+						{% if result.min_capacity %}
+							<div class="col-sm-4">
+								<img src="{% static "places/images/min.svg" %}" title="Minima"> Minima: &nbsp
+								<span class="capacity">{{result.min_capacity}}</span>
+							</div>
+						{% endif %}
+						
+						{% if result.indoors_capacity %}
+							<div class="col-sm-4">
+								<img src="{% static "places/images/indoors.svg" %}" title="Salon"> Maxima Interiores: &nbsp
+								<span class="capacity">{{result.indoors_capacity}}</span>
+							</div>
+						{% endif %}  
 
-            {% if result.outdoors_capacity %}
-              <div class="col-sm-4">
-                <img src="{% static "places/images/outdoors.svg" %}" title="Jardin">Maxima Exterores: &nbsp
-                <span class="capacity">{{result.outdoors_capacity}}</span>
-              </div>
-            {% endif %}
-          </div>
-          <p>{{result.description}}</p>
-        </div>
-      </div>
-    </div>
-  </div>
+						{% if result.outdoors_capacity %}
+							<div class="col-sm-4">
+								<img src="{% static "places/images/outdoors.svg" %}" title="Jardin">Maxima Exterores: &nbsp
+								<span class="capacity">{{result.outdoors_capacity}}</span>
+							</div>
+						{% endif %}
+					</div>
+				</p>
+			</div>
+		</div>
+	</div>
 
 {% empty %}
-  <p>No hay resultados para esta area</p>
+	<p>No hay resultados para esta area</p>
 {% endfor %}
 
 {%if results.has_next %}
-  <div id="results-{{results.next_page_number}}"></div>
-  <button onclick="getNextPage()" class="btn btn-primary btn-block">+ resultados</button>
-  <script type="text/javascript">
+	<div id="results-{{results.next_page_number}}"></div>
+	<button onclick="getNextPage()" class="btn btn-primary btn-block">+ resultados</button>
+	<script type="text/javascript">
 	function getNextPage(){
-	  console.log("getNextPage");
-	  $('#results-{{results.next_page_number}}').load("{{ request.get_full_path }}"+";page={{results.next_page_number}}");
+		console.log("getNextPage");
+		$('#results-{{results.next_page_number}}').load("{{ request.get_full_path }}"+";page={{results.next_page_number}}");
 	}
-  </script>
+	</script>
 {% endif %}

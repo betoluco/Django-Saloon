@@ -7,10 +7,10 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   height="32"
+   height="34"
    id="svg2439"
    version="1.0"
-   width="41.11475"
+   width="43.765999"
    sodipodi:docname="email.svg"
    inkscape:version="0.92.1 r15371">
   <metadata
@@ -38,9 +38,9 @@
      inkscape:window-height="705"
      id="namedview36"
      showgrid="false"
-     inkscape:zoom="0.71198213"
-     inkscape:cx="219.6855"
-     inkscape:cy="165.7345"
+     inkscape:zoom="11.391714"
+     inkscape:cx="29.817945"
+     inkscape:cy="17.669197"
      inkscape:window-x="-4"
      inkscape:window-y="-4"
      inkscape:window-maximized="1"
@@ -78,7 +78,7 @@
   </defs>
   <g
      id="g2449"
-     transform="matrix(0.08447245,0,0,0.08447245,-10.276423,-10.276422)">
+     transform="matrix(0.0905062,0,0,0.0905062,-11.153311,-11.153311)">
     <path
        d="M 569.374,461.472 V 160.658 H 160.658 v 300.814 z"
        id="path2451"
