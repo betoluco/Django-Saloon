@@ -7,60 +7,65 @@
 {% endblock %}
 
 {% block content %}
-	<div id="myCarousel" class="carousel slide" data-ride="carousel">
+	<div class="top-info">
+		<div id="myCarousel" class="carousel slide" data-ride="carousel">
 
-		{% with pictures=place.picture_set.all %}
-			<!-- Indicators -->
-			<ol class="carousel-indicators">
-				{% for pic in pictures %}
-					{% if forloop.first %}
-						<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-					{% else %}
-						<li data-target="#myCarousel" data-slide-to="{{forloop.counter0}}"></li>
-					{% endif %}
-				{% endfor %}
-			</ol>
+			{% with pictures=place.picture_set.all %}
+				<!-- Indicators -->
+				<ol class="carousel-indicators">
+					{% for pic in pictures %}
+						{% if forloop.first %}
+							<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+						{% else %}
+							<li data-target="#myCarousel" data-slide-to="{{forloop.counter0}}"></li>
+						{% endif %}
+					{% endfor %}
+				</ol>
 
-			<!-- Wrapper for slides -->
-			<div class="carousel-inner">
-				{% for pic in pictures %}
-					{% if forloop.first %}
-						<div class="item active">
-							<img src="{% get_media_prefix %}{{pic.picture}}">
-						</div>
-					{% else %}
-						<div class="item">
-							<img src="{% get_media_prefix %}{{pic.picture}}">
-						</div>
-					{% endif %}
-				{% endfor %}
-			</div>
-		{% endwith %}
+				<!-- Wrapper for slides -->
+				<div class="carousel-inner">
+					{% for pic in pictures %}
+						{% if forloop.first %}
+							<div class="item active">
+								<img src="{% get_media_prefix %}{{pic.picture}}">
+							</div>
+						{% else %}
+							<div class="item">
+								<img src="{% get_media_prefix %}{{pic.picture}}">
+							</div>
+						{% endif %}
+					{% endfor %}
+				</div>
+			{% endwith %}
 
-		<!-- Left and right controls -->
-		<a class="left carousel-control" href="#myCarousel" data-slide="prev">
-			<span class="glyphicon glyphicon-chevron-left"></span>
-			<span class="sr-only">Previous</span>
+			<!-- Left and right controls -->
+			<a class="left carousel-control" href="#myCarousel" data-slide="prev">
+				<span class="glyphicon glyphicon-chevron-left"></span>
+				<span class="sr-only">Previous</span>
+				</a>
+			<a class="right carousel-control" href="#myCarousel" data-slide="next">
+				<span class="glyphicon glyphicon-chevron-right"></span>
+				<span class="sr-only">Next</span>
 			</a>
-		<a class="right carousel-control" href="#myCarousel" data-slide="next">
-			<span class="glyphicon glyphicon-chevron-right"></span>
-			<span class="sr-only">Next</span>
-		</a>
-	</div>
-	<!--********************* End carousel *******************-->
+		</div>
+		<!--********************* End carousel *******************-->
 
-	<!--***************** Name & description *****************-->
-	<div class="panel panel-default">
-		<div class="panel-body">
-			<h1>{{place.name}}</h1>
-			<p>{{place.description}}</p>
+		<!--***************** Name & description *****************-->
+		<div id="top-panel" class="panel panel-default">
+			<div class="panel-body">
+				<h1>{{place.name}}</h1>
+				<p>{{place.description}}</p>
+			</div>
 		</div>
 	</div>
-
 	<!--********************** Capacity **********************-->
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title">Capacidad:</h3>
+			<h3 class="panel-title">
+				<img src="{% static "places/images/decoration_left.svg" %}">
+					&nbsp Capacidad &nbsp
+				<img src="{% static "places/images/decoration_right.svg" %}">
+			</h3>
 		</div>
 
 		<div class="panel-body">
@@ -94,7 +99,11 @@
 	<!--******************** Sercices ********************-->
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title">Servicios:</h3>
+			<h3 class="panel-title">
+				<img src="{% static "places/images/decoration_left.svg" %}">
+					&nbsp Servicios &nbsp
+				<img src="{% static "places/images/decoration_right.svg" %}">
+			</h3>
 		</div>
 
 		<div class="panel-body">
@@ -159,7 +168,11 @@
 	<!--******************** Social Networks ********************-->
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title">Redes sociales:</h3>
+			<h3 class="panel-title">
+				<img src="{% static "places/images/decoration_left.svg" %}">
+					&nbsp Redes sociales &nbsp
+				<img src="{% static "places/images/decoration_right.svg" %}">
+			</h3>
 		</div>
 
 		<div class="panel-body">
@@ -178,15 +191,19 @@
 	<!--******************** Contact Info ********************-->
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<h3 class="panel-title">Contacto:</h3>
+			<h3 class="panel-title">
+				<img src="{% static "places/images/decoration_left.svg" %}">
+					&nbsp Contacto &nbsp
+				<img src="{% static "places/images/decoration_right.svg" %}">
+			</h3>
 		</div>
 
 		<div class="panel-body">
 			<div class="row">
 				{% for rep in place.representative_set.all %}
-							<div class="col-sm-4">
-								<p>{{rep.representative}},</p>
-							</div>
+					<div class="col-sm-4">
+						<p>{{rep.representative}},</p>
+					</div>
 				{% endfor %}
 			</div>
 			
@@ -213,7 +230,11 @@
 	<!--******************** Address ********************-->
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3 class="panel-title">Direccion:</h3>
+				<h3 class="panel-title">
+					<img src="{% static "places/images/decoration_left.svg" %}">
+						&nbsp Direccion &nbsp
+					<img src="{% static "places/images/decoration_right.svg" %}">
+				</h3>
 			</div>
 
 			<div class="panel-body">
@@ -235,7 +256,7 @@
 				</div>
 
 				<div class="row">
-					<div id="map" class="col-md-8 col-md-offset-2"></div>
+					<div id="map" class="col-md-5 col-md-offset-1"></div>
 				</div>
 			</div>
 		</div>

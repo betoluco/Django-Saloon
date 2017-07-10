@@ -1,10 +1,18 @@
+body{
+	background-image: url(../images/flowers.jpg);
+}
+
 #navbar{
 	box-shadow: 2px 2px 2px #000000;
 	background-image: url(../images/ricepaper.png);
 }
 
 #name{
-  font-family: 'Allura', cursive;
-  font-size: 2em;
-  color: black;
+	font-family: 'Allura', cursive;
+	font-size: 2em;
+	color: black;
+}
+
+.capacity{
+	font-weight: bold;
 }

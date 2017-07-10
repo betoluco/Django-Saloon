@@ -5,13 +5,32 @@
 	margin: auto;
 }
 
-.capacity{
-	font-weight: bold;
+.panel:not(#top-panel){
+	box-shadow: 2px 2px 2px #000000;
 }
 
-#map{
-	padding-top: 50%;
-	border: 1px;
-	margin-bottom: 20px;
+.panel-heading{
+	background-color: #e2e9e9 !important;
+}
+
+.panel-body{
+	background-image: url(../images/ricepaper.png);
+}
+
+.top-info{
 	box-shadow: 2px 2px 2px #000000;
+}
+
+#top-panel{
+	border-top: 0px;
+}
+
+.panel-title{
+	text-align: center !important;
+}
+	
+
+
+#map{
+	padding-top: 30%;
 }

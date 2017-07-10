@@ -1,8 +1,8 @@
+a{
+	color: black;
+}
+
 .well{
 	background-image: url(../images/ricepaper.png);
 	box-shadow: 2px 2px 2px #000000;
-}
-
-.capacity{
-	font-weight: bold;
 }
