@@ -16,30 +16,30 @@
 				<p>{{result.description}}</p>
 
 				<h4>Capacidad:</h4>
-				<p>
-					<div class="row">
-						{% if result.min_capacity %}
-							<div class="col-sm-4">
-								<img src="{% static "places/images/min.svg" %}" title="Minima"> Minima: &nbsp
-								<span class="capacity">{{result.min_capacity}}</span>
-							</div>
-						{% endif %}
-						
-						{% if result.indoors_capacity %}
-							<div class="col-sm-4">
-								<img src="{% static "places/images/indoors.svg" %}" title="Salon"> Maxima Interiores: &nbsp
-								<span class="capacity">{{result.indoors_capacity}}</span>
-							</div>
-						{% endif %}  
+				
+				<div class="row">
+					{% if result.min_capacity %}
+						<div class="col-sm-4">
+							<img src="{% static "places/images/min.svg" %}" title="Minima"> Minima: &nbsp
+							<span class="capacity">{{result.min_capacity}}</span>
+						</div>
+					{% endif %}
+					
+					{% if result.indoors_capacity %}
+						<div class="col-sm-4">
+							<img src="{% static "places/images/indoors.svg" %}" title="Salon"> Maxima Interiores: &nbsp
+							<span class="capacity">{{result.indoors_capacity}}</span>
+						</div>
+					{% endif %}  
 
-						{% if result.outdoors_capacity %}
-							<div class="col-sm-4">
-								<img src="{% static "places/images/outdoors.svg" %}" title="Jardin">Maxima Exterores: &nbsp
-								<span class="capacity">{{result.outdoors_capacity}}</span>
-							</div>
-						{% endif %}
-					</div>
-				</p>
+					{% if result.outdoors_capacity %}
+						<div class="col-sm-4">
+							<img src="{% static "places/images/outdoors.svg" %}" title="Jardin">Maxima Exterores: &nbsp
+							<span class="capacity">{{result.outdoors_capacity}}</span>
+						</div>
+					{% endif %}
+				</div>
+				
 			</div>
 		</div>
 	</div>
