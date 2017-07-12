@@ -30,6 +30,12 @@
 {% endblock %}
 
 {% block content %}
+	
+	<div class="alert alert-info alert-dismissable">
+		<a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+		Acercate a un area o usa el buscador para ver los salones de ese lugar (actualmete toluca y area conurbada)
+	</div>
+
 	<!--map-->
 	<div class="row">
 		<input id="pac-input" class="controls" type="text" placeholder="Buscador">
@@ -37,4 +43,8 @@
 	</div>
 
 	<div id="results"></div>
+
+	<div id="contact" class="alert alert-danger">
+		Quejas, sugerencia o registro al 7226198765
+	</div>
 {% endblock %}
