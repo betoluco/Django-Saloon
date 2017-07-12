@@ -27,18 +27,19 @@
 	</head>
 
 	<body>
+		<img id="bg" src="{% static "places/images/bgImage8.jpg" %}">
+
 		<div class="container">
 			<!-- Navbar-->
 			<nav id="navbar" class="navbar navbar-default">
-				
-					<div class="navbar-header">
-						<a id="name" class="navbar-brand" href="#">sitioweb.com</a>
-					</div>
-				 
+				<div class="navbar-header">
+					<a id="name" class="navbar-brand" href="#">sitioweb.com</a>
+				</div>
 			</nav>
 
 			{% block content %}
 			{% endblock %}
+			
 		</div>
 	</body>
 </html>

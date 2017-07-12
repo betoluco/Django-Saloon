@@ -1,5 +1,9 @@
-body{
-	background-image: url(../images/flowers.jpg);
+#bg {
+	width: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: -1;
 }
 
 #navbar{
