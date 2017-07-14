@@ -24,7 +24,7 @@ class Place (models.Model):
 			raise ValidationError(_(CERO_OR_LESS_ERROR))
 
 	name = models.CharField(max_length=50)
-	description = models.CharField(max_length=300) 
+	description = models.CharField(max_length=300)
 	indoors_capacity = models.IntegerField(
 		null=True,
 		blank=True,
@@ -53,7 +53,6 @@ class Place (models.Model):
 	restrooms = models.BooleanField()
 	ac = models.BooleanField()
 	heating = models.BooleanField()
-	aux_power_generator = models.BooleanField()
 	games = models.BooleanField()
 	active = models.BooleanField(default=True)
 	last_modified = models.DateField(auto_now=True)

@@ -83,7 +83,7 @@
 						<img src="{% static "places/images/indoors.svg" %}" title="Salon"> Maxima Interiores: &nbsp
 						<span class="capacity">{{place.indoors_capacity}}</span>
 					</div>
-				{% endif %}  
+				{% endif %}
 
 				{% if place.outdoors_capacity %}
 					<div class="col-sm-4">
@@ -91,7 +91,7 @@
 						<span class="capacity">{{place.outdoors_capacity}}</span>
 					</div>
 				{% endif %}
-				
+
 			</div>
 		</div>
 	</div>
@@ -118,7 +118,7 @@
 							{% endif %}
 						</p>
 					</div>
-					
+
 					<div class="col-sm-4">
 						<p>
 							<img src="{% static "places/images/stove.svg" %}"> Cocina: &nbsp
@@ -147,12 +147,6 @@
 				{% if place.heating %}
 					<div class="col-sm-2">
 						<img src="{% static "places/images/heating.svg" %}" title="Calefaccion">
-					</div>
-				{% endif %}
-
-				{% if place.aux_power_generator %}
-					<div class="col-sm-2">
-						<img src="{% static "places/images/aux_power.svg" %}" title="Generador auxiliar">
 					</div>
 				{% endif %}
 
@@ -206,7 +200,7 @@
 					</div>
 				{% endfor %}
 			</div>
-			
+
 			<div class="row">
 				{% for telephone in place.telephone_set.all %}
 					<div class="col-xs-3">
@@ -250,7 +244,7 @@
 						{% if place.address.address_line_3%}
 							 {{place.address.address_line_3}},
 						{% endif %}
-						{{place.address.locality}}, 
+						{{place.address.locality}},
 						{{place.address.locality.region}}</span></p>
 					</div>
 				</div>
@@ -275,13 +269,13 @@
 			};
 
 			var map = new google.maps.Map(document.getElementById('map'), mapOptions);
-			
+
 			var marker = new google.maps.Marker({
 				position: location,
 				map: map
-			});	
+			});
 		}
 	</script>
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBbVtEJlP2oDkRfEfFc2SVEE7Wj1kObrNs&libraries=places&callback=initMap"async defer></script>
-	
+
 {% endblock %}
