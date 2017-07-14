@@ -50,7 +50,7 @@ class Place (models.Model):
 		blank=True,
 		validators=[validate_more_than_cero]
 	)
-	restrooms = models.BooleanField()
+	food = models.BooleanField()
 	ac = models.BooleanField()
 	heating = models.BooleanField()
 	games = models.BooleanField()
