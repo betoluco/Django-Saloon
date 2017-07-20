@@ -1,20 +1,24 @@
 // Center zoom and defaultBounds are constant so it must be checket that fit all markers
+var map
 function initLocationsMap() {
 	console.log("init map");
+	var center = {lat: 19.30, lng: -99.65};
+	if (readCookie("center")) center = JSON.parse(readCookie("center"));
 	var zoom = 12;
-	if(readCookie("zoom")) zoom = +readCookie("zoom");
-	var latlng = {lat: 19.3031489, lng: -99.6275017};
-	if(readCookie("center")) latlng = JSON.parse(readCookie("center"));
+	if (readCookie("zoom")) zoom = parseInt(readCookie("zoom"));
 	mapOptions = {
-		center: latlng,
+		center: center,
 		zoom: zoom,
 		mapTypeId: google.maps.MapTypeId.ROADMAP,
 		mapTypeControl: false,
 		streetViewControl: false,
 	};
-	var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+	map = new google.maps.Map(document.getElementById('map'), mapOptions);
+
 	var input = document.getElementById('pac-input');
 	map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+	addListener();
 
 	//code for autocomplete
 	var defaultBounds = new google.maps.LatLngBounds(
@@ -34,6 +38,16 @@ function initLocationsMap() {
 		bounds.union(place.geometry.viewport);
 		map.fitBounds(bounds);
 	});
-	getMarkers(map);
-	addListener(map);
+}
+
+
+function addListener(){
+	map.addListener('idle', function(){
+		console.log("load results");
+		var bounds = new google.maps.LatLngBounds();
+		var bounds = map.getBounds();
+		$('#results').load("results/?bounds="+JSON.stringify(bounds.toJSON()));
+		document.cookie = "center="+JSON.stringify(map.getCenter());
+		document.cookie = "zoom="+map.getZoom();
+	});
 }
