@@ -48,6 +48,21 @@
 	<p>No hay resultados para esta area</p>
 {% endfor %}
 
+<script type="text/javascript">
+	var bounds = new google.maps.LatLngBounds()
+	{% for marker in markers %}
+		var marker = new google.maps.Marker({
+			position:{lat: {{marker.latitude_longitude.y}}, lng: {{marker.latitude_longitude.x}}},
+			map: map,
+			title: "{{marker.name}}"
+		});
+		bounds.extend({lat: {{marker.latitude_longitude.y}}, lng: {{marker.latitude_longitude.x}}});
+	{% endfor %}
+	if(parseInt(readCookie("zoom")) <= 12){
+		map.fitBounds(bounds);
+	}
+</script>
+
 {%if results.has_next %}
 	<div id="results-{{results.next_page_number}}"></div>
 	<button onclick="getNextPage()" class="btn btn-primary btn-block">+ resultados</button>

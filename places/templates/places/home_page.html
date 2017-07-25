@@ -12,20 +12,7 @@
 	{{block.super}}
 	<script type="text/javascript" src="{% static "places/js/readCookie.js" %}"></script>
 	<script type="text/javascript" src="{% static "places/js/initLocationsMap.js" %}"></script>
-	<script type="text/javascript" src="{% static "places/js/addMarkers.js" %}"></script>
-	<script type="text/javascript">
-		function getMarkers(map){
-			console.log("addMarkers")
-			var markers = [
-				{% for place in places %}
-					["{{place.name}}", {{place.latitude_longitude.y}}, {{place.latitude_longitude.x}}],
-				{% endfor %}
-			];
-			addMarkers(markers, map);
-		}
-	</script>
 
-	<script type="text/javascript" src="{% static "places/js/mapIdleListener.js" %}"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBbVtEJlP2oDkRfEfFc2SVEE7Wj1kObrNs&libraries=places&callback=initLocationsMap"async defer></script>
 {% endblock %}
 

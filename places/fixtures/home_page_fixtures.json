@@ -116,5 +116,142 @@
 			"last_modified": "2016-01-29",
 			"latitude_longitude": "POINT (-99.641371 19.278400)"
 		}
+	},
+
+		{
+		"model": "places.Place",
+		"pk": 8,
+		"fields": {
+			"name": "Eigth",
+			"description": "Type",
+			"restrooms": false,
+			"ac": false,
+			"heating": false,
+			"aux_power_generator": false,
+			"games": false,
+			"active": true,
+			"last_modified": "2016-01-29",
+			"latitude_longitude": "POINT (-99.641598 19.278143)"
+		}
+	},
+
+		{
+		"model": "places.Place",
+		"pk": 9,
+		"fields": {
+			"name": "Nine",
+			"description": "Type",
+			"restrooms": false,
+			"ac": false,
+			"heating": false,
+			"aux_power_generator": false,
+			"games": false,
+			"active": true,
+			"last_modified": "2016-01-29",
+			"latitude_longitude": "POINT (-99.641542 19.278483)"
+		}
+	},
+
+		{
+		"model": "places.Place",
+		"pk": 10,
+		"fields": {
+			"name": "Ten",
+			"description": "Type",
+			"restrooms": false,
+			"ac": false,
+			"heating": false,
+			"aux_power_generator": false,
+			"games": false,
+			"active": true,
+			"last_modified": "2016-01-29",
+			"latitude_longitude": "POINT (-99.641478 19.278654)"
+		}
+	},
+
+		{
+		"model": "places.Place",
+		"pk": 11,
+		"fields": {
+			"name": "Eleven",
+			"description": "Type",
+			"restrooms": false,
+			"ac": false,
+			"heating": false,
+			"aux_power_generator": false,
+			"games": false,
+			"active": true,
+			"last_modified": "2016-01-29",
+			"latitude_longitude": "POINT (-99.641749 19.278951)"
+		}
+	},
+
+		{
+		"model": "places.Place",
+		"pk": 12,
+		"fields": {
+			"name": "Twelve",
+			"description": "Type",
+			"restrooms": false,
+			"ac": false,
+			"heating": false,
+			"aux_power_generator": false,
+			"games": false,
+			"active": true,
+			"last_modified": "2016-01-29",
+			"latitude_longitude": "POINT (-99.641417 19.278954)"
+		}
+	},
+
+		{
+		"model": "places.Place",
+		"pk": 13,
+		"fields": {
+			"name": "Thirteen",
+			"description": "Type",
+			"restrooms": false,
+			"ac": false,
+			"heating": false,
+			"aux_power_generator": false,
+			"games": false,
+			"active": true,
+			"last_modified": "2016-01-29",
+			"latitude_longitude": "POINT (-99.641791 19.278325)"
+		}
+	},
+
+		{
+		"model": "places.Place",
+		"pk": 14,
+		"fields": {
+			"name": "Fourteenth",
+			"description": "Type",
+			"restrooms": false,
+			"ac": false,
+			"heating": false,
+			"aux_power_generator": false,
+			"games": false,
+			"active": true,
+			"last_modified": "2016-01-29",
+			"latitude_longitude": "POINT (-99.641486 19.278248)"
+		}
+	},
+
+		{
+		"model": "places.Place",
+		"pk": 15,
+		"fields": {
+			"name": "Fifteen",
+			"description": "Type",
+			"restrooms": false,
+			"ac": false,
+			"heating": false,
+			"aux_power_generator": false,
+			"games": false,
+			"active": true,
+			"last_modified": "2016-01-29",
+			"latitude_longitude": "POINT (-99.641554 19.278462)"
+		}
 	}
+
 ]
