@@ -7,7 +7,7 @@ from django.forms.widgets import Select
 from datetime import date
 
 from places.models import Place, Region, Locality, Address, Telephone, Email, Representative, SocialMedia, ProfilePicture, Picture
-from website.settings.local import MEDIA_URL
+from website.settings.local import MEDIA_URL, BASE_DIR
 
 
 PICTURES_PATH = 'places/tests/pictures/'
@@ -413,7 +413,7 @@ class ProfilePictureTest(TestCase):
 	@profile_picture_creator
 	def test_profile_pictures_are_upladed_to_the_correct_path(self, profile_picture):
 		profile_picture.save()
-		self.assertTrue(os.path.isfile(MEDIA_URL+str(profile_picture.picture)))
+		self.assertTrue(os.path.exists(BASE_DIR + MEDIA_URL +str(profile_picture.picture)))
 
 	@profile_picture_creator
 	def test_there_is_only_one_profile_picture_per_model(self, profile_picture):
@@ -463,7 +463,7 @@ class PictureTest(TestCase):
 	@picture_creator
 	def test_pictures_are_upladed_to_the_correct_path(self, picture):
 		picture.save()
-		self.assertTrue(os.path.isfile(MEDIA_URL + str(picture.picture)))
+		self.assertTrue(os.path.exists(BASE_DIR + MEDIA_URL + str(picture.picture)))
 
 	@picture_creator
 	def test_picture_gets_deleted_when_foreign_key_is_deleted(self, picture):
