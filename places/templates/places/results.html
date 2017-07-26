@@ -45,22 +45,19 @@
 	</div>
 
 {% empty %}
-	<p>No hay resultados para esta area</p>
+	<div class="well">
+		<p>No hay resultados para esta area</p>
+	</div>
 {% endfor %}
 
 <script type="text/javascript">
-	var bounds = new google.maps.LatLngBounds()
 	{% for marker in markers %}
 		var marker = new google.maps.Marker({
 			position:{lat: {{marker.latitude_longitude.y}}, lng: {{marker.latitude_longitude.x}}},
 			map: map,
 			title: "{{marker.name}}"
 		});
-		bounds.extend({lat: {{marker.latitude_longitude.y}}, lng: {{marker.latitude_longitude.x}}});
 	{% endfor %}
-	if(parseInt(readCookie("zoom")) <= 12){
-		map.fitBounds(bounds);
-	}
 </script>
 
 {%if results.has_next %}
