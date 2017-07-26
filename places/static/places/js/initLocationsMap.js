@@ -2,6 +2,8 @@
 var map
 function initLocationsMap() {
 	console.log("init map");
+	mapHeight = $(document).height()*0.7;
+	$("#map").css('height', mapHeight);
 	var center = {lat: 19.30, lng: -99.65};
 	if (readCookie("center")) center = JSON.parse(readCookie("center"));
 	var zoom = 10;
@@ -13,15 +15,15 @@ function initLocationsMap() {
 		mapTypeControl: false,
 		streetViewControl: false,
 	};
-	map = new google.maps.Map(document.getElementById('map'), mapOptions);
+	map = new google.maps.Map(document.getElementById("map"), mapOptions);
 	
 	// This boundary needs to be checked every time a new point is added
 	//so all points apear when is freshly loaded
 	if (!(readCookie("zoom")||readCookie("center"))){
 		console.log("initBounds")
 		var initBounds = new google.maps.LatLngBounds(
-			new google.maps.LatLng(19.272054, -99.678241),
-			new google.maps.LatLng(19.323413, -99.624167)
+			new google.maps.LatLng(19.240997, -99.744631),
+			new google.maps.LatLng(19.372651, -99.564601)
 		);
 		map.fitBounds(initBounds);
 	}
