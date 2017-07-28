@@ -16,17 +16,6 @@ function initLocationsMap() {
 		streetViewControl: false,
 	};
 	map = new google.maps.Map(document.getElementById("map"), mapOptions);
-	
-	// This boundary needs to be checked every time a new point is added
-	//so all points apear when is freshly loaded
-	if (!(readCookie("zoom")||readCookie("center"))){
-		console.log("initBounds")
-		var initBounds = new google.maps.LatLngBounds(
-			new google.maps.LatLng(19.240997, -99.744631),
-			new google.maps.LatLng(19.372651, -99.564601)
-		);
-		map.fitBounds(initBounds);
-	}
 
 	var input = document.getElementById('pac-input');
 	map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
@@ -35,7 +24,7 @@ function initLocationsMap() {
 
 	//code for autocomplete
 	//This boundary needs to be cheked constantly.
-	//so that it fits all the locations with a marker 
+	//so that it fits all the locations with a marker
 	var defaultBounds = new google.maps.LatLngBounds(
 		new google.maps.LatLng(19.244180, -99.709826),
 		new google.maps.LatLng(19.482734, -99.462291)
@@ -62,7 +51,5 @@ function addListener(){
 		var bounds = new google.maps.LatLngBounds();
 		var bounds = map.getBounds();
 		$('#results').load("results/?bounds="+JSON.stringify(bounds.toJSON()));
-		document.cookie = "center="+JSON.stringify(map.getCenter());
-		document.cookie = "zoom="+map.getZoom();
 	});
 }

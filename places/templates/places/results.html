@@ -16,7 +16,7 @@
 				<p>{{result.description}}</p>
 
 				<h4>Capacidad:</h4>
-				
+
 				<div class="row">
 					{% if result.min_capacity %}
 						<div class="col-sm-4">
@@ -24,13 +24,13 @@
 							<span class="capacity">{{result.min_capacity}}</span>
 						</div>
 					{% endif %}
-					
+
 					{% if result.indoors_capacity %}
 						<div class="col-sm-4">
 							<img src="{% static "places/images/indoors.svg" %}" title="Salon"> Maxima Interiores: &nbsp
 							<span class="capacity">{{result.indoors_capacity}}</span>
 						</div>
-					{% endif %}  
+					{% endif %}
 
 					{% if result.outdoors_capacity %}
 						<div class="col-sm-4">
@@ -39,7 +39,7 @@
 						</div>
 					{% endif %}
 				</div>
-				
+
 			</div>
 		</div>
 	</div>
@@ -51,13 +51,26 @@
 {% endfor %}
 
 <script type="text/javascript">
+	var initBounds = new google.maps.LatLngBounds(
+		new google.maps.LatLng(19.259353, -99.694291),
+		new google.maps.LatLng(19.308367, -99.614812)
+	);
 	{% for marker in markers %}
 		var marker = new google.maps.Marker({
 			position:{lat: {{marker.latitude_longitude.y}}, lng: {{marker.latitude_longitude.x}}},
 			map: map,
 			title: "{{marker.name}}"
 		});
+		if (!(readCookie("zoom")||readCookie("center"))){
+		    console.log("bounds extend")
+		    initBounds.extend({lat: {{marker.latitude_longitude.y}}, lng: {{marker.latitude_longitude.x}}});
+		}
 	{% endfor %}
+	if (!(readCookie("zoom")||readCookie("center"))){
+		map.fitBounds(initBounds);
+	}
+	document.cookie = "center="+JSON.stringify(map.getCenter());
+	document.cookie = "zoom="+map.getZoom();
 </script>
 
 {%if results.has_next %}
