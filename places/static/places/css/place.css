@@ -28,7 +28,11 @@
 .panel-title{
 	text-align: center !important;
 }
-	
+
 #map{
 	padding-top: 30%;
+}
+
+.panel-title img{
+    max-width: 25%;
 }
