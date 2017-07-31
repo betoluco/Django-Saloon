@@ -1,5 +1,5 @@
 {% load static %}
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html>
 	<head>
 		{% block meta_tags %}
@@ -17,7 +17,7 @@
 			<link href="https://fonts.googleapis.com/css?family=Niconne|Allura" rel="stylesheet">
 			<link rel="stylesheet" type="text/css" href="{% static "places/css/base.css" %}">
 		{% endblock %}
-				
+
 
 		{% block javascript %}
 			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
@@ -27,8 +27,6 @@
 	</head>
 
 	<body>
-		<img id="bg" src="{% static "places/images/bgImage8.jpg" %}">
-
 		<div class="container">
 			<!-- Navbar-->
 			<nav  class="navbar navbar-default">
@@ -39,7 +37,7 @@
 
 			{% block content %}
 			{% endblock %}
-			
+
 		</div>
 	</body>
 </html>
