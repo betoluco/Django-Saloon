@@ -250,7 +250,9 @@
 				</div>
 
 				<div class="row">
-					<div id="map" class="col-md-5 col-md-offset-1"></div>
+				    <div class="col-md-5 col-md-offset-1">
+					    <div id="map"></div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -269,7 +271,8 @@
 			};
 
 			var map = new google.maps.Map(document.getElementById('map'), mapOptions);
-
+			mapHeight = $("#map").height();
+            $("#map").css('height', mapHeight);
 			var marker = new google.maps.Marker({
 				position: location,
 				map: map
