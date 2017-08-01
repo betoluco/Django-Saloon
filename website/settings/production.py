@@ -1,7 +1,7 @@
 from website.settings.base import *
 
 
-ALLOWED_HOSTS = ['beto.pythonanywhere.com']
+ALLOWED_HOSTS = ['www.celebralize.com']
 
 DEBUG =False
 
