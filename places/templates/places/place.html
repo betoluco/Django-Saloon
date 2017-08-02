@@ -174,9 +174,9 @@
 				{% for media in place.socialmedia_set.all %}
 					<div class="col-xs-2">
 						{% if 'facebook' in media.social_media %}
-							<a href="{{media.social_media}}"><img src="{% static "places/images/facebook.svg" %}" alt="facebook"></a>
+							<a href="{{media.social_media}}" target="_blank"><img src="{% static "places/images/facebook.svg" %}" alt="facebook"></a>
 						{% else %}
-						    <a href="{{media.social_media}}"><img src="{% static "places/images/website.svg" %}" alt="website"></a>
+						    <a href="{{media.social_media}}" target="_blank"><img src="{% static "places/images/website.svg" %}" alt="website"></a>
 						{% endif %}
 					</div>
 				{% endfor %}
