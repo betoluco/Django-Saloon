@@ -108,51 +108,46 @@
 
 		<div class="panel-body">
 			<div class="row">
-					<div class="col-sm-4">
-						<p>
-							<img src="{% static "places/images/vehicles.svg" %}"> Estacionamiento: &nbsp
-							{% if place.parking_capacity %}
-								<span class="capacity">{{place.parking_capacity}}</span> autos
-							{% else %}
-								<span class="capacity">No tiene</span>
-							{% endif %}
-						</p>
-					</div>
-
-					<div class="col-sm-4">
-						<p>
-							<img src="{% static "places/images/stove.svg" %}"> Cocina: &nbsp
-							{% if place.parking_capacity %}
-								<span class="capacity">{{place.kitchen_sqrt_m}}</span> m<sup>2</sup>
-							{% else %}
-								<span class="capacity">No tiene</span>
-							{% endif %}
-						</p>
-					</div>
+				<div class="col-sm-4">
+					<p>
+						<img src="{% static "places/images/vehicles.svg" %}"> Estacionamiento: &nbsp
+						{% if place.parking_capacity %}
+							<span class="capacity">{{place.parking_capacity}}</span> autos
+						{% else %}
+							<span class="capacity">No tiene</span>
+						{% endif %}
+					</p>
+				</div>
 			</div>
 
 			<div class="row">
+			    {% if place.kitchen %}
+    				<div class="col-xs-2">
+    					    <img src="{% static "places/images/stove.svg" %}">Cocina
+    				</div>
+				{% endif %}
+
 				{% if place.food %}
-					<div class="col-sm-2"
-						<img src="{% static "places/images/food.svg" %}" title="Catering">
+					<div class="col-xs-2">
+						<img src="{% static "places/images/food.svg" %}"> Comida
 					</div>
 				{% endif %}
 
 				{% if place.ac %}
-					<div class="col-sm-2">
-						<img src="{% static "places/images/ac.svg" %}" title="Aire acondicionado">
+					<div class="col-xs-2">
+						<img src="{% static "places/images/ac.svg" %}"> AC
 					</div>
 				{% endif %}
 
 				{% if place.heating %}
-					<div class="col-sm-2">
-						<img src="{% static "places/images/heating.svg" %}" title="Calefaccion">
+					<div class="col-xs-2">
+						<img src="{% static "places/images/heating.svg" %}"> Calefacción
 					</div>
 				{% endif %}
 
 				{% if place.games %}
-					<div class="col-sm-2">
-						<img src="{% static "places/images/games.svg" %}" title="juegos">
+					<div class="col-xs-2">
+						<img src="{% static "places/images/games.svg" %}"> Juegos
 					</div>
 				{% endif %}
 			</div>
@@ -213,13 +208,16 @@
 				{% endfor %}
 			</div>
 
-			<div class="row">
-				{% for em in place.email_set.all %}
-						<div class="col-xs-4">
-							<img src="{% static "places/images/email.svg" %}" >{{em.email}}
-						</div>
-				{% endfor %}
-			</div>
+
+			{% for em in place.email_set.all %}
+		        <div class="row">
+					<div class="col-xs-12">
+					    <p>
+						    <img src="{% static "places/images/email.svg" %}" >{{em.email}}
+					    </p>
+					</div>
+			    </div>
+			{% endfor %}
 		</div>
 	</div>
 
@@ -228,7 +226,7 @@
 			<div class="panel-heading">
 				<h3 class="panel-title">
 					<img src="{% static "places/images/decoration_left.svg" %}">
-						&nbsp Direccion &nbsp
+						&nbsp Dirección &nbsp
 					<img src="{% static "places/images/decoration_right.svg" %}">
 				</h3>
 			</div>
