@@ -170,6 +170,8 @@
 					<div class="col-xs-2">
 						{% if 'facebook' in media.social_media %}
 							<a href="{{media.social_media}}" target="_blank"><img src="{% static "places/images/facebook.svg" %}" alt="facebook"></a>
+						{% elif 'youtube' in media.social_media %}
+						    <a href="{{media.social_media}}" target="_blank"><img src="{% static "places/images/youtube.svg" %}" alt="youtube"></a>
 						{% else %}
 						    <a href="{{media.social_media}}" target="_blank"><img src="{% static "places/images/website.svg" %}" alt="website"></a>
 						{% endif %}
